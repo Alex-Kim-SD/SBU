@@ -52,6 +52,14 @@ class Bot(db.Model):
 
     transcripts = relationship('Transcript', backref='bot')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'user_id': self.user_id,
+            'settings': self.settings,
+        }
+
 
 class ConversationSetting(db.Model):
     __tablename__ = 'conversation_settings'
@@ -64,6 +72,13 @@ class ConversationSetting(db.Model):
     setting_details = db.Column(JSON)
 
     debates = relationship('Debate', backref='conversation_setting')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'setting_details': self.setting_details,
+        }
 
 
 class Debate(db.Model):
@@ -83,6 +98,18 @@ class Debate(db.Model):
 
     transcripts = relationship('Transcript', backref='debate')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'conversation_setting_id': self.conversation_setting_id,
+            'initiator_bot_id': self.initiator_bot_id,
+            'opponent_bot_id': self.opponent_bot_id,
+            'start_time': self.start_time.isoformat() if self.start_time else None,
+            'end_time': self.end_time.isoformat() if self.end_time else None,
+            'topic': self.topic,
+            'result': self.result,
+        }
+
 
 class Transcript(db.Model):
     __tablename__ = 'transcripts'
@@ -95,3 +122,12 @@ class Transcript(db.Model):
     bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
     message = db.Column(Text)
     time = db.Column(DateTime)
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'debate_id': self.debate_id,
+            'bot_id': self.bot_id,
+            'message': self.message,
+            'time': self.time.isoformat() if self.time else None,
+        }

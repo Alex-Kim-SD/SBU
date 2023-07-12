@@ -1,2 +1,3 @@
 FLASK_APP=app
 FLASK_ENV=development
+SCHEMA=flask_sbu_schema
