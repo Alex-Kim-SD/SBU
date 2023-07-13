@@ -1,3 +1,4 @@
+# SBU/app/models/user.py
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -122,7 +123,7 @@ class Transcript(db.Model):
     bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
     message = db.Column(Text)
     time = db.Column(DateTime)
-    
+
     def to_dict(self):
         return {
             'id': self.id,

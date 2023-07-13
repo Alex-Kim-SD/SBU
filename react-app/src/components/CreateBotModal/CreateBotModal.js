@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 
 function CreateBotModal() {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [name, setName] = useState('');
-  const [userId, setUserId] = useState('');
   const [settings, setSettings] = useState('');
   const [errors, setErrors] = useState([]);
+
+  const user = useSelector(state => state.session.user);
+  console.log('\n','UserID',user,'\n')
 
   const createBot = async (event) => {
     event.preventDefault();
 
-    // update later to thunk?
-    const response = await fetch('/bots', {
+    // Send fetch request
+    const response = await fetch('/api/bots/', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         name,
-        user_id: userId,
-        settings: JSON.parse(settings),
+        user_id: user.id,
+        settings,
       }),
     });
 
@@ -31,6 +36,8 @@ function CreateBotModal() {
     }
   };
 
+
+
   return (
     <>
       <h2>Create Bot</h2>
@@ -41,10 +48,6 @@ function CreateBotModal() {
         <label>
           Bot Name:
           <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-        </label>
-        <label>
-          User ID:
-          <input type="text" value={userId} onChange={e => setUserId(e.target.value)} required />
         </label>
         <label>
           Bot Settings (JSON):
