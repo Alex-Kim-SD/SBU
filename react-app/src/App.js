@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
 import CreateBotButton from "./components/CreateBotModal/CreateBotButton";
+import BotDetailPage from "./components/BotDetailPage/BotDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/home">
             <CreateBotButton />
+          </Route>
+          <Route path="/bots/:botId">
+            <BotDetailPage />
           </Route>
         </Switch>
       )}
