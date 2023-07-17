@@ -1,0 +1,12 @@
+.bot-card {
+    position: relative;
+}
+
+.bot-settings {
+    opacity: 0;
+    position: absolute;
+}
+
+.bot-card:hover .bot-settings {
+    opacity: 1;
+}

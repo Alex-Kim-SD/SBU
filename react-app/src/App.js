@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 
 import CreateBotButton from "./components/CreateBotModal/CreateBotButton";
 import BotDetailPage from "./components/BotDetailPage/BotDetailPage";
+import BotDashboard from "./components/BotDashboard/BotDashboard"
 
 function App() {
   const dispatch = useDispatch();
@@ -30,9 +31,13 @@ function App() {
           <Route path="/home">
             <CreateBotButton />
           </Route>
+          <Route exact path="/bots">
+            <BotDashboard />
+          </Route>
           <Route path="/bots/:botId">
             <BotDetailPage />
           </Route>
+
         </Switch>
       )}
     </>

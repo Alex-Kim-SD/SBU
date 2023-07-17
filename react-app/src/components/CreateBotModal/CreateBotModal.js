@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
+import { useHistory } from 'react-router-dom';
 
 function CreateBotModal() {
   const dispatch = useDispatch();
@@ -10,13 +11,14 @@ function CreateBotModal() {
   const [errors, setErrors] = useState([]);
 
   const user = useSelector(state => state.session.user);
-  console.log('\n','UserID',user,'\n')
+
+  const history = useHistory();
 
   const createBot = async (event) => {
     event.preventDefault();
 
     // Send fetch request
-    const response = await fetch('/api/bots/', {
+    const response = await fetch('/api/bots', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,14 +31,14 @@ function CreateBotModal() {
     });
 
     if(response.ok) {
+      const bot = await response.json();
+      history.push(`/bots/${bot.id}`); // Redirect to new bot's detail page
       closeModal();
     } else {
       const data = await response.json();
       setErrors(data.errors);
     }
   };
-
-
 
   return (
     <>

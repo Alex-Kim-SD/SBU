@@ -1,4 +1,6 @@
+// SBU/react-app/src/store/session.js
 // constants
+
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 

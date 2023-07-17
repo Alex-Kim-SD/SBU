@@ -1,38 +1,45 @@
-// SBU/react-app/src/components/BotDetailPage/BotDetailPage.js
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-// import { deleteBot, selectBotById } from './botsSlice'; // need to be created
-import robot from "../../assets/robot.png";
+  import React, { useEffect } from 'react';
+  import { useSelector, useDispatch } from 'react-redux';
+  import { useHistory, useParams } from 'react-router-dom';
+  import { deleteBot, fetchBot, fetchBots } from '../../store/botSlice';
+  import robot from "../../assets/robot.png";
+  import EditBotButton from "../EditBotModal/EditBotButton"
 
-function BotDetailPage() {
-  const { botId } = useParams();
-//   const bot = useSelector(state => selectBotById(state, botId));
-  const dispatch = useDispatch();
-  const history = useHistory();
+  function BotDetailPage() {
+    const { botId } = useParams();
+    const dispatch = useDispatch();
 
-//   if (!bot) {
-//     return <div>Bot not found</div>;
-//   }
+    useEffect(() => {
+      dispatch(fetchBot(botId));
+    }, [botId, dispatch]);
 
-  const handleDelete = async () => {
-    // await dispatch(deleteBot(botId));
-    history.push('/bots');
-  };
+    // const state = useSelector(state => state);
+    // console.log('\n','State',state);
 
-  const handleUpdate = () => {
-    history.push(`/bots/${botId}/update`);
-  };
- // need to replace img with placeholder
-  return (
-    <div>
-      <img src={robot} alt="Bot avatar" />
-      <h2>{"bot.name"}</h2>
-      <p>{"bot.settings"}</p>
-      <button onClick={handleDelete}>Delete Bot</button>
-      <button onClick={handleUpdate}>Update Bot</button>
-    </div>
-  );
-}
+    const bot = useSelector(state => state.bots[botId]);
+    const history = useHistory();
 
-export default BotDetailPage;
+    if (!bot) {
+      return <div>Bot not found</div>;
+    }
+
+    const handleDelete = async () => {
+      if(window.confirm("Are you sure you want to delete this bot?")) { //replace with modal later maybe
+        await dispatch(deleteBot(botId));
+        await dispatch(fetchBots())
+        history.push('/bots');
+      }
+    };
+
+    return (
+      <div>
+        <img src={robot} alt="Bot avatar" />
+        <h2>{bot.name}</h2>
+        <p>{bot.settings}</p>
+        <button onClick={handleDelete}>Delete Bot</button>
+        <EditBotButton botId={botId}/>
+      </div>
+    );
+  }
+
+  export default BotDetailPage;

@@ -7,7 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 bot_routes = Blueprint('bots', __name__)
 
 # READ All
-@bot_routes.route('/', methods=['GET'])
+@bot_routes.route('', methods=['GET'])
 @login_required
 def read_all_bots():
     bots = Bot.query.filter_by(user_id=current_user.id).all()
@@ -27,7 +27,7 @@ def read_bot(bot_id):
         return jsonify(error='Bot not found'), 404
 
 # CREATE
-@bot_routes.route('/', methods=['POST'])
+@bot_routes.route('', methods=['POST'])
 @login_required
 def create_bot():
     try:
@@ -66,4 +66,3 @@ def delete_bot(bot_id):
             return jsonify(error=str(e)), 400
     else:
         return jsonify(error='Bot not found'), 404
-
