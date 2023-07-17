@@ -7,14 +7,14 @@ conversation_settings = Blueprint('conversation_settings', __name__)
 @conversation_settings.route('', methods=['GET'])
 @login_required
 def get_all_conversation_settings():
-    all_settings = ConversationSetting.query.all()
+    all_settings = ConversationSetting.query.filter_by(user_id=current_user.id)
     return jsonify([setting.to_dict() for setting in all_settings])
 
 @conversation_settings.route('/<int:id>', methods=['GET'])
 @login_required
 def get_conversation_setting(id):
     setting = ConversationSetting.query.get(id)
-    if setting is None:
+    if setting is None or setting.user_id != current_user.id:
         return jsonify({"error": "Setting not found"}), 404
     return jsonify(setting.to_dict())
 
@@ -22,7 +22,9 @@ def get_conversation_setting(id):
 @login_required
 def create_conversation_setting():
     data = request.get_json()
-    new_setting = ConversationSetting(user_id=data['user_id'], setting_details=data['setting_details'])
+    if 'setting_details' not in data:
+        return jsonify({"error": "Missing setting_details"}), 400
+    new_setting = ConversationSetting(user_id=current_user.id, setting_details=data['setting_details'])
     db.session.add(new_setting)
     db.session.commit()
     return jsonify(new_setting.to_dict()), 201
@@ -32,11 +34,11 @@ def create_conversation_setting():
 def update_conversation_setting(id):
     data = request.get_json()
     setting = ConversationSetting.query.get(id)
-    if setting is None:
+    if setting is None or setting.user_id != current_user.id:
         return jsonify({"error": "Setting not found"}), 404
 
-    setting.user_id = data.get('user_id', setting.user_id)
-    setting.setting_details = data.get('setting_details', setting.setting_details)
+    if 'setting_details' in data:
+        setting.setting_details = data['setting_details']
     db.session.commit()
     return jsonify(setting.to_dict())
 
@@ -44,8 +46,9 @@ def update_conversation_setting(id):
 @login_required
 def delete_conversation_setting(id):
     setting = ConversationSetting.query.get(id)
-    if setting is None:
+    if setting is None or setting.user_id != current_user.id:
         return jsonify({"error": "Setting not found"}), 404
     db.session.delete(setting)
     db.session.commit()
     return jsonify({"message": "Setting has been deleted"}), 200
+
