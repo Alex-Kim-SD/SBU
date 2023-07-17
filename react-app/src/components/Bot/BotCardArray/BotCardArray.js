@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BotCard from '../BotCard/BotCard';
-import { fetchBots } from '../../store/botSlice';
+import { fetchBots } from '../../../store/botSlice';
 
 function BotCardArray({ userId }) {
     const dispatch = useDispatch();

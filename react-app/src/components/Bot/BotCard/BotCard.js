@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import robot from "../../assets/robot.png";
+import robot from "../../../assets/robot.png"
 import './BotCard.css';
 
 function BotCard({ bot }) {

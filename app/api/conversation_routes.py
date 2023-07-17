@@ -4,7 +4,7 @@ from ..models import ConversationSetting, db
 
 conversation_settings = Blueprint('conversation_settings', __name__)
 
-@conversation_settings.route('/', methods=['GET'])
+@conversation_settings.route('', methods=['GET'])
 @login_required
 def get_all_conversation_settings():
     all_settings = ConversationSetting.query.all()
@@ -18,7 +18,7 @@ def get_conversation_setting(id):
         return jsonify({"error": "Setting not found"}), 404
     return jsonify(setting.to_dict())
 
-@conversation_settings.route('/', methods=['POST'])
+@conversation_settings.route('', methods=['POST'])
 @login_required
 def create_conversation_setting():
     data = request.get_json()

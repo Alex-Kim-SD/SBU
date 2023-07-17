@@ -6,9 +6,9 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
-import CreateBotButton from "./components/CreateBotModal/CreateBotButton";
-import BotDetailPage from "./components/BotDetailPage/BotDetailPage";
-import BotDashboard from "./components/BotDashboard/BotDashboard"
+import CreateBotButton from "./components/Bot/CreateBotModal/CreateBotButton";
+import BotDetailPage from "./components/Bot/BotDetailPage/BotDetailPage"
+import BotDashboard from "./components/Bot/BotDashboard/BotDashboard"
 
 function App() {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
   import React, { useEffect } from 'react';
   import { useSelector, useDispatch } from 'react-redux';
   import { useHistory, useParams } from 'react-router-dom';
-  import { deleteBot, fetchBot, fetchBots } from '../../store/botSlice';
-  import robot from "../../assets/robot.png";
+  import { deleteBot, fetchBot, fetchBots } from '../../../store/botSlice';
+  import robot from "../../../assets/robot.png";
   import EditBotButton from "../EditBotModal/EditBotButton"
 
   function BotDetailPage() {

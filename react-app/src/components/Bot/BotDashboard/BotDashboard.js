@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchBots } from '../../store/botSlice';
-import robot from "../../assets/robot.png";
+import { fetchBots } from '../../../store/botSlice';
+import robot from "../../../assets/robot.png";
 import BotCardArray from '../BotCardArray/BotCardArray'
 import CreateBotButton from '../CreateBotModal/CreateBotButton';
 
