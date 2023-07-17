@@ -6,9 +6,11 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
-import CreateBotButton from "./components/Bot/CreateBotModal/CreateBotButton";
 import BotDetailPage from "./components/Bot/BotDetailPage/BotDetailPage"
 import BotDashboard from "./components/Bot/BotDashboard/BotDashboard"
+
+import ConvDashboard from "./components/Conversation/ConvDashboard/ConvDashboard";
+import ConvSettingDetailPage from "./components/Conversation/ConvDetailPage/ConvDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +31,6 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/home">
-            <CreateBotButton />
           </Route>
           <Route exact path="/bots">
             <BotDashboard />
@@ -37,7 +38,12 @@ function App() {
           <Route path="/bots/:botId">
             <BotDetailPage />
           </Route>
-
+          <Route exact path="/conversations">
+            <ConvDashboard/>
+          </Route>
+          <Route exact path="/conversations/:settingId">
+            <ConvSettingDetailPage/>
+          </Route>
         </Switch>
       )}
     </>

@@ -20,7 +20,7 @@ function BotCardArray({ userId }) {
     }
 
     return (
-        <div>
+        <div className='card-list'>
             {bots.map(bot => (
                 <BotCard key={bot.id} bot={bot} />
             ))}

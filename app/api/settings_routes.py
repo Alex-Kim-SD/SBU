@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from ..models import ConversationSetting, db
 
-conversation_settings = Blueprint('conversation_settings', __name__)
+conversation_settings = Blueprint('settings', __name__)
 
 @conversation_settings.route('', methods=['GET'])
 @login_required
@@ -51,4 +51,3 @@ def delete_conversation_setting(id):
     db.session.delete(setting)
     db.session.commit()
     return jsonify({"message": "Setting has been deleted"}), 200
-

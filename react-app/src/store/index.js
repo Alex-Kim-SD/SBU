@@ -1,24 +1,27 @@
 // SBU/react-app/src/store/index.js
+
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
+import logger from 'redux-logger';
+import session from './session';
 import bots from './botSlice';
+import convSettings from './convSettingsSlice';
 
 const rootReducer = combineReducers({
   session,
   bots,
+  convSettings,
 });
-
 
 let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
-  const logger = require('redux-logger').default;
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+  enhancer = compose(
+    applyMiddleware(thunk, logger),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
 }
 
 const configureStore = (preloadedState) => {

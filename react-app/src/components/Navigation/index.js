@@ -13,7 +13,10 @@ function Navigation({ isLoaded }) {
 				<NavLink exact to="/">Home</NavLink>
 			</li>
 			<li>
-				<NavLink exact to="/bots">Bot Dashboard</NavLink>
+				<NavLink exact to="/bots">Bots</NavLink>
+			</li>
+			<li>
+				<NavLink exact to="/conversations">Conversations</NavLink>
 			</li>
 			{isLoaded && (
 				<li>
