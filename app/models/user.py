@@ -132,3 +132,26 @@ class Transcript(db.Model):
             'message': self.message,
             'time': self.time.isoformat() if self.time else None,
         }
+
+class Message(db.Model):
+    __tablename__ = 'messages'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
+    bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
+    content = db.Column(Text)
+    role = db.Column(db.String(20), nullable=False)
+    time = db.Column(DateTime)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'debate_id': self.debate_id,
+            'bot_id': self.bot_id,
+            'content': self.content,
+            'role': self.role,
+            'time': self.time.isoformat() if self.time else None,
+        }
