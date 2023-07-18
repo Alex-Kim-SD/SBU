@@ -1,7 +1,11 @@
 // SBU/react-app/src/store/convSettingsSlice.js
 
 // Initial State
-const initialState = {};
+// Initial State
+const initialState = {
+  settings: {},
+};
+
 
 // Action Types
 const GET_SETTINGS = 'settings/GET_SETTINGS';

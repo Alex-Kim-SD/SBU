@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
 				<NavLink exact to="/bots">Bots</NavLink>
 			</li>
 			<li>
-				<NavLink exact to="/conversations">Conversations</NavLink>
+				<NavLink exact to="/settings">Conv. Settings</NavLink>
 			</li>
 			{isLoaded && (
 				<li>

@@ -38,10 +38,10 @@ function App() {
           <Route path="/bots/:botId">
             <BotDetailPage />
           </Route>
-          <Route exact path="/conversations">
+          <Route exact path="/settings">
             <ConvDashboard/>
           </Route>
-          <Route exact path="/conversations/:settingId">
+          <Route exact path="/settings/:settingId">
             <ConvSettingDetailPage/>
           </Route>
         </Switch>

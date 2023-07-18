@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteSetting, fetchSetting, fetchSettings } from '../../../store/convSettingsSlice';
 import speech_bubble from "../../../assets/speech_bubble.png";
-// import EditSettingButton from "../EditSettingModal/EditSettingButton";
+import EditConvButton from "../EditConvModal/EditConvButton";
 
 function ConvSettingDetailPage() {
   const { settingId } = useParams();
@@ -31,9 +31,9 @@ function ConvSettingDetailPage() {
   return (
     <div>
       <img src={speech_bubble} alt="Setting icon" />
-      <h2>{setting.setting_details}</h2>
-      <button onClick={handleDelete}>Delete Setting</button>
-      {/* <EditSettingButton settingId={settingId} /> */}
+      <p>{setting.setting_details}</p>
+      <button onClick={handleDelete}>Delete ConvSetting</button>
+      <EditConvButton settingId={settingId} />
     </div>
   );
 }
