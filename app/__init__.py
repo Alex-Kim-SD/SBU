@@ -10,6 +10,8 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.bot_routes import bot_routes
 from .api.settings_routes import conversation_settings
+from .api.conv_gen_route import conv_gen_route
+from .api.message_routes import message_routes
 # from .api.debate_routes import debate_routes
 # from .api.transcript_routes import transcript_routes
 from .seeds import seed_commands
@@ -36,6 +38,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 
 app.register_blueprint(bot_routes, url_prefix='/api/bots')
 app.register_blueprint(conversation_settings, url_prefix='/api/settings')
+app.register_blueprint(conv_gen_route, url_prefix='/api/conv_gen')
+app.register_blueprint(message_routes, url_prefix='/api/messages')
 # app.register_blueprint(debate_routes, url_prefix='/api/debates')
 # app.register_blueprint(transcript_routes, url_prefix='/api/transcripts')
 
