@@ -3,28 +3,25 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import logo from '/home/alex5/SBU/react-app/src/assets/SBU_logo.png'; //import the logo
 
 function Navigation({ isLoaded }) {
-	const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
 
-	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
-			<li>
-				<NavLink exact to="/bots">Bots</NavLink>
-			</li>
-			<li>
-				<NavLink exact to="/settings">Conv. Settings</NavLink>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
-			)}
-		</ul>
-	);
+  return (
+    <ul className="navigation-bar">
+      <div>
+        <NavLink exact to="/">
+          <img src={logo} alt="logo" />
+        </NavLink>
+      </div>
+      {isLoaded && sessionUser && (
+        <div>
+          <ProfileButton user={sessionUser} />
+        </div>
+      )}
+    </ul>
+  );
 }
 
 export default Navigation;

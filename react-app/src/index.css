@@ -1,1 +1,17 @@
-/* TODO Add site wide styles */
+body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .app-content .SideNavBar {
+    width: 200px;
+  }
+
+  .app-content .Switch {
+    flex-grow: 1;
+  }

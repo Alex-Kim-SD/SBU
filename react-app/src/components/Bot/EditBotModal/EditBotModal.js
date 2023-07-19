@@ -54,7 +54,7 @@ function EditBotModal({ botId }) {
                     <input type="text" value={name} onChange={e => setName(e.target.value)} required />
                 </label>
                 <label>
-                    Bot Settings (JSON):
+                    Bot Settings:
                     <textarea value={settings} onChange={e => setSettings(e.target.value)} />
                 </label>
                 <button type="submit">Save Changes</button>

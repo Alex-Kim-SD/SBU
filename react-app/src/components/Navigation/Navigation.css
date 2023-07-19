@@ -1,7 +1,13 @@
-.profile-dropdown {
-  position: absolute;
-}
-
 .hidden {
   display: none;
+}
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-bar img {
+  height: 50px;
+  width: 100px;
 }

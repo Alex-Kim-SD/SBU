@@ -1,0 +1,26 @@
+/* SideNavBar.css */
+.side-nav {
+    background-color: #f8f9fa;
+    width: 140px;
+    height: 400px;
+    padding: 30px 0;
+}
+
+.side-nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-nav ul li {
+    margin-bottom: 20px;
+}
+
+.side-nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.side-nav ul li a:hover {
+    color: #007bff;
+}
