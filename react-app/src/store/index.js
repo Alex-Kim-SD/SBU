@@ -6,6 +6,7 @@ import bots from './botSlice';
 import convSettings from './convSettingsSlice';
 import loading from './loadingSlice';
 import conversation from './convSlice';
+import debate from './debateSlice';
 
 const rootReducer = combineReducers({
   session,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   convSettings,
   loading,
   conversation,
+  debate,
 });
 
 let enhancer;

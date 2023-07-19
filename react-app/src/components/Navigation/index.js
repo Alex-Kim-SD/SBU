@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
   return (
     <ul className="navigation-bar">
       <div>
-        <NavLink exact to="/">
+        <NavLink exact to="/bots">
           <img src={logo} alt="logo" />
         </NavLink>
       </div>

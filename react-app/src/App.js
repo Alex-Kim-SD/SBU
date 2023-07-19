@@ -37,30 +37,23 @@ function App() {
           {!isLoginPage && !isSignupPage && <SideNavBar />}
 
           <Switch>
-            <Route path="/login">
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route path="/challenge">
-              <ChallengePage/>
-            </Route>
-            <Route exact path="/bots">
-              <BotDashboard />
-            </Route>
-            <Route path="/bots/:botId">
-              <BotDetailPage />
-            </Route>
-            <Route exact path="/settings">
-              <ConvDashboard/>
-            </Route>
-            <Route exact path="/settings/:settingId">
-              <ConvSettingDetailPage/>
-            </Route>
-            <Route exact path="/other-bots">
-              <OtherBotsPage/>
-            </Route>
+
+            <Route path="/login"> <LoginFormPage /> </Route>
+
+            <Route path="/signup"> <SignupFormPage /> </Route>
+
+            <Route path="/challenge"><ChallengePage /> </Route>
+
+            <Route exact path="/bots"> <BotDashboard /> </Route>
+            <Route exact path="/other-bots"> <OtherBotsPage /> </Route>
+            <Route path="/bots/:botId"> <BotDetailPage /> </Route>
+
+            <Route exact path="/settings"> <ConvDashboard /> </Route>
+            <Route exact path="/settings/:settingId"> <ConvSettingDetailPage /> </Route>
+
+            <Route exact path="/debates"> </Route>
+            <Route exact path="/debates/:debateId"> </Route>
+
           </Switch>
         </div>
       )}
