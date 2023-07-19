@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchSettings } from '../../../store/convSettingsSlice'; // Fixed import statement
 import ConvCardArray from '../ConvCardArray/ConvCardArray';
-// import CreateConvButton from '../CreateConvModal/CreateConvButton';
+import CreateConvButton from '../CreateConvModal/CreateConvButton';
 
 function ConvDashboard() {
   const { convId } = useParams();
@@ -29,7 +29,7 @@ function ConvDashboard() {
   return (
     <div>
       <h1>ConvDashboard</h1>
-      {/* <CreateConvButton /> */}
+      <CreateConvButton />
       <ConvCardArray userId={currentUser.id} />
     </div>
   );

@@ -31,6 +31,7 @@ function ConvSettingDetailPage() {
   return (
     <div>
       <img src={speech_bubble} alt="Setting icon" />
+      <h2>{setting.title}</h2>
       <p>{setting.setting_details}</p>
       <button onClick={handleDelete}>Delete ConvSetting</button>
       <EditConvButton settingId={settingId} />

@@ -22,9 +22,14 @@ def get_conversation_setting(id):
 @login_required
 def create_conversation_setting():
     data = request.get_json()
-    if 'setting_details' not in data:
-        return jsonify({"error": "Missing setting_details"}), 400
-    new_setting = ConversationSetting(user_id=current_user.id, setting_details=data['setting_details'])
+    required_fields = ['title', 'setting_details']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+    new_setting = ConversationSetting(
+        title=data['title'],
+        user_id=current_user.id,
+        setting_details=data['setting_details']
+    )
     db.session.add(new_setting)
     db.session.commit()
     return jsonify(new_setting.to_dict()), 201
@@ -37,6 +42,8 @@ def update_conversation_setting(id):
     if setting is None or setting.user_id != current_user.id:
         return jsonify({"error": "Setting not found"}), 404
 
+    if 'title' in data:
+        setting.title = data['title']
     if 'setting_details' in data:
         setting.setting_details = data['setting_details']
     db.session.commit()

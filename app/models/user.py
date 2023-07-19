@@ -49,7 +49,7 @@ class Bot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
-    settings = db.Column(JSON)
+    settings = db.Column(db.Text)
 
     transcripts = relationship('Transcript', backref='bot')
 
@@ -69,14 +69,16 @@ class ConversationSetting(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
-    setting_details = db.Column(JSON)
+    setting_details = db.Column(db.Text)
 
     debates = relationship('Debate', backref='conversation_setting')
 
     def to_dict(self):
         return {
             'id': self.id,
+            'title': self.title,
             'user_id': self.user_id,
             'setting_details': self.setting_details,
         }
@@ -140,6 +142,7 @@ class Message(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
     debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
     bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
     content = db.Column(Text)
@@ -149,6 +152,7 @@ class Message(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
             'debate_id': self.debate_id,
             'bot_id': self.bot_id,
             'content': self.content,

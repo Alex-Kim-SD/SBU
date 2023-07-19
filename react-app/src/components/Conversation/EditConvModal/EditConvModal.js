@@ -15,7 +15,8 @@ function ConvSettingsModal({ settingId }) {
         dispatch(fetchSetting(settingId));
     }, [settingId, dispatch]);
 
-    const setting = useSelector(state => state.convSettings.settings[settingId]);
+const setting = useSelector(state => state.convSettings.settings[settingId]);
+
     useEffect(() => {
         if (setting) {
             setSettingDetails(setting.setting_details);
