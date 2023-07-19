@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import './LoginForm.css';
+import { login } from "../../store/session";
+import "./LoginForm.css";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -16,6 +16,14 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
     if (data) {
       setErrors(data);
     }
@@ -49,6 +57,9 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="button" onClick={handleDemoLogin}>
+          Demo Login
+        </button>
       </form>
     </>
   );
