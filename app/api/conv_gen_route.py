@@ -20,6 +20,7 @@ def create_conversation():
     max_messages = request.json.get('max_messages')
     topic = request.json.get('topic')
     length_limit = request.json.get('length_limit')
+    owner_id = request.json.get('owner_id')
 
     # Fetch the bots
     bot_1 = Bot.query.get(bot_id_1)
@@ -46,8 +47,7 @@ def create_conversation():
         return jsonify({"error": "Topic not found"}), 400
 
     # Create a new debate
-    new_debate = Debate(conversation_setting_id=conv_settings.id, initiator_bot_id=bot_1.id,
-                        opponent_bot_id=bot_2.id, start_time=datetime.utcnow(), topic=topic)
+    new_debate = Debate(conversation_setting_id=conv_settings.id, initiator_bot_id=bot_1.id, owner_id=owner_id, opponent_bot_id=bot_2.id, start_time=datetime.utcnow(), topic=topic)
     db.session.add(new_debate)
     db.session.commit()
 
@@ -80,7 +80,7 @@ def create_conversation():
         messages = []
         print("Unexpected response format from chat API")
 
-    # Save the messages to the database 
+    # Save the messages to the database
     if messages:
         for message_data in messages:
             print('\n','Message_Data:',message_data,'\n')

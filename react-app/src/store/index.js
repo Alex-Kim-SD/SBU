@@ -7,6 +7,7 @@ import convSettings from './convSettingsSlice';
 import loading from './loadingSlice';
 import conversation from './convSlice';
 import debate from './debateSlice';
+import message from './messageSlice'; // Add the message slice here
 
 const rootReducer = combineReducers({
   session,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   loading,
   conversation,
   debate,
+  message, // Include the message slice in the root reducer
 });
 
 let enhancer;

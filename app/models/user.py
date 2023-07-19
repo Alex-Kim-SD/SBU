@@ -99,7 +99,9 @@ class Debate(db.Model):
     end_time = db.Column(DateTime)
     topic = db.Column(db.String(255))
     result = db.Column(db.String(255))
-    
+    owner_id = Column(Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
+
+
 
     transcripts = relationship('Transcript', backref='debate')
 
@@ -109,11 +111,13 @@ class Debate(db.Model):
             'conversation_setting_id': self.conversation_setting_id,
             'initiator_bot_id': self.initiator_bot_id,
             'opponent_bot_id': self.opponent_bot_id,
+            'owner_id': self.owner_id,
             'start_time': self.start_time.isoformat() if self.start_time else None,
             'end_time': self.end_time.isoformat() if self.end_time else None,
             'topic': self.topic,
             'result': self.result,
         }
+
 
 
 class Transcript(db.Model):

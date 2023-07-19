@@ -11,6 +11,7 @@ function DebateCardArray() {
   }, [dispatch]);
 
   const debates = useSelector((state) => state.debate.debates) || [];
+  console.log('\n','Debates:'.debates,'\n')
 
   if (!debates.length) {
     return <div>No debates found</div>;

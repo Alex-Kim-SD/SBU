@@ -1,67 +1,67 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBots, fetchOtherBots } from '../../../store/botSlice';
-import { fetchSettings } from '../../../store/convSettingsSlice'
+import { fetchSettings } from '../../../store/convSettingsSlice';
 import { createConversation } from '../../../store/convSlice';
 
-
 const ChallengePage = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    // Component state
-    const [botId1, setBotId1] = useState(null);
-    const [botId2, setBotId2] = useState(null);
-    const [convSettingsId, setConvSettingsId] = useState(null);
-    const [maxMessages, setMaxMessages] = useState('');
-    const [topic, setTopic] = useState('');
+  // Component state
+  const [botId1, setBotId1] = useState(null);
+  const [botId2, setBotId2] = useState(null);
+  const [convSettingsId, setConvSettingsId] = useState(null);
+  const [maxMessages, setMaxMessages] = useState('');
+  const [topic, setTopic] = useState('');
 
-    // Redux store data
-    const userBots = useSelector((state) => state.bots.your_bots);
-    const otherBots = useSelector((state) => state.bots.other_bots);
-    const convSettings = useSelector((state) => Object.values(state.convSettings));
-    console.log('\n','Conv Settings',convSettings,'\n')
+  // Redux store data
+  const userBots = useSelector((state) => state.bots.your_bots);
+  const otherBots = useSelector((state) => state.bots.other_bots);
+  const convSettings = useSelector((state) => Object.values(state.convSettings));
+  const currentUserId = useSelector((state) => state.session.user.id);
 
-    useEffect(() => {
-        dispatch(fetchBots());
-        dispatch(fetchOtherBots());
-        dispatch(fetchSettings());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBots());
+    dispatch(fetchOtherBots());
+    dispatch(fetchSettings());
+  }, [dispatch]);
 
-    const handleBot1Change = (event) => {
-        setBotId1(parseInt(event.target.value));
-    };
+  const handleBot1Change = (event) => {
+    setBotId1(parseInt(event.target.value));
+  };
 
-    const handleBot2Change = (event) => {
-        setBotId2(parseInt(event.target.value));
-    };
+  const handleBot2Change = (event) => {
+    setBotId2(parseInt(event.target.value));
+  };
 
-    const handleConvSettingsChange = (event) => {
-        setConvSettingsId(parseInt(event.target.value));
-    };
+  const handleConvSettingsChange = (event) => {
+    setConvSettingsId(parseInt(event.target.value));
+  };
 
-    const handleMaxMessagesChange = (event) => {
-        setMaxMessages(event.target.value);
-    };
+  const handleMaxMessagesChange = (event) => {
+    setMaxMessages(event.target.value);
+  };
 
-    const handleTopicChange = (event) => {
-        setTopic(event.target.value);
-    };
+  const handleTopicChange = (event) => {
+    setTopic(event.target.value);
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-        if (botId1 && botId2 && convSettingsId && maxMessages && topic) {
-          dispatch(
-            createConversation({
-              bot_id_1: botId1,
-              bot_id_2: botId2,
-              conv_settings_id: convSettingsId,
-              max_messages: parseInt(maxMessages),
-              topic,
-            })
-          );
-        }
-      };
+    if (botId1 && botId2 && convSettingsId && maxMessages && topic) {
+      dispatch(
+        createConversation({
+          bot_id_1: botId1,
+          bot_id_2: botId2,
+          conv_settings_id: convSettingsId,
+          max_messages: parseInt(maxMessages),
+          topic,
+          owner_id: parseInt(currentUserId),
+        })
+      );
+    }
+  };
 
 
     return (
