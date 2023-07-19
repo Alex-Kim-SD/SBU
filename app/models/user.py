@@ -146,6 +146,7 @@ class Message(db.Model):
     debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
     bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
     content = db.Column(Text)
+    index = db.Column(db.Integer, nullable=False)
     role = db.Column(db.String(20), nullable=False)
     time = db.Column(DateTime)
 
@@ -156,6 +157,7 @@ class Message(db.Model):
             'debate_id': self.debate_id,
             'bot_id': self.bot_id,
             'content': self.content,
+            'index': self.index,
             'role': self.role,
             'time': self.time.isoformat() if self.time else None,
         }

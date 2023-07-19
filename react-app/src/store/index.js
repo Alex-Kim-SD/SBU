@@ -1,18 +1,18 @@
-// SBU/react-app/src/store/index.js
-
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import session from './session';
 import bots from './botSlice';
 import convSettings from './convSettingsSlice';
-import loading from './loadingSlice'
+import loading from './loadingSlice';
+import conversation from './convSlice';
 
 const rootReducer = combineReducers({
   session,
   bots,
   convSettings,
-  loading
+  loading,
+  conversation,
 });
 
 let enhancer;

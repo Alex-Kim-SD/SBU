@@ -24,6 +24,11 @@ def create_conversation():
     # Fetch the bots
     bot_1 = Bot.query.get(bot_id_1)
     bot_2 = Bot.query.get(bot_id_2)
+
+    # Check if bot_1 and bot_2 are not None
+    if not bot_1 or not bot_2:
+        return jsonify({"error": "Bot not found."}), 400
+
     bot_names = [bot_1.name, bot_2.name]
     conv_settings = ConversationSetting.query.get(conv_settings_id)
 
@@ -75,6 +80,22 @@ def create_conversation():
         messages = []
         print("Unexpected response format from chat API")
 
+    # Save the messages to the database 
+    if messages:
+        for message_data in messages:
+            print('\n','Message_Data:',message_data,'\n')
+            message = Message(
+                debate_id=new_debate.id,
+                bot_id=bot_id_1 if message_data['name'] == bot_1.name else bot_id_2,
+                name=message_data['name'],
+                content=message_data['message'],
+                role='assistant',
+                index=int(message_data['index'])
+            )
+            db.session.add(message)
+        db.session.commit()
+
+
     return jsonify({
         "message": "Conversation created successfully",
         "debate": {
@@ -82,5 +103,5 @@ def create_conversation():
             "topic": new_debate.topic
         },
         "cleaned_res": messages,
-        "openAI_res":chat
+        "openAI_res": chat
     }), 200
