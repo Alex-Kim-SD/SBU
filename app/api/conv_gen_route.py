@@ -50,20 +50,17 @@ def create_conversation():
     system_def = {
         "role": "system",
         "content": "You are a silent assistant who specializes in emulating speech between two people."
+        f"There should be exactly {max_messages} total messages exchanged."
     }
+    print('\n','System Def',system_def,'\n')
+
     user_request = {
         "role": "user",
-        "content": f"Emulate an argument on this topic: '{new_debate.topic}' between '{bot_1.name}' who has these settings {bot_1.settings} and '{bot_2.name}' who has these settings {bot_2.settings}. "
-                "Limit each person's response to 50 words or less. "
-                "Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code:"
-                '''
-                try:
-                chat_content = chat['choices'][0]['message']['content']
-                chat_json = json.loads(chat_content)
-                messages = chat_json['messages']
-                '''
-                f"There should be exactly {max_messages} messages."
+        "content": f"Emulate a conversation happening under these circumstances: {conv_settings.setting_details} on: '{new_debate.topic}' between '{bot_1.name}' who is described as {bot_1.settings} and '{bot_2.name}' who is described as {bot_2.settings}. "
+        "Limit each person's response to 50 words or less. Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code: chat_content = chat['choices'][0]['message']['content'] chat_json = json.loads(chat_content) messages = chat_json['messages']"
     }
+
+    print('\n','User Request',user_request,'\n')
 
     chat = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
