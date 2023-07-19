@@ -17,3 +17,11 @@ def get_debate(debate_id):
     debate_data['conversation_setting'] = debate.conversation_setting.to_dict() if debate.conversation_setting else None
 
     return jsonify(debate_data), 200
+
+@debate_routes.route('', methods=['GET'])
+@login_required
+def get_all_debates():
+    debates = Debate.query.all()
+    debate_list = [debate.to_dict() for debate in debates]
+
+    return jsonify(debate_list), 200

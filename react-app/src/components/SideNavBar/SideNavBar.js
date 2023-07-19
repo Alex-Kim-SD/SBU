@@ -18,6 +18,9 @@ const SideNavBar = () => {
                 <li>
                     <NavLink exact to="/other-bots">Other Bots</NavLink>
                 </li>
+                <li>
+                    <NavLink exact to="/debates">Debates</NavLink>
+                </li>
             </ul>
         </div>
     );

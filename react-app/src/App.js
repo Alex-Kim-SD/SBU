@@ -17,6 +17,9 @@ import OtherBotsPage from './components/OtherBots/OtherBotsPage/OtherBotsPage';
 
 import ChallengePage from './components/Challenge/ChallengePage/ChallengePage';
 
+import DebateDetailPage from './components/Debate/DebateDetailPage/DebateDetailPage';
+import DebatePage from './components/Debate/DebatePage/DebatePage';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,8 +54,8 @@ function App() {
             <Route exact path="/settings"> <ConvDashboard /> </Route>
             <Route exact path="/settings/:settingId"> <ConvSettingDetailPage /> </Route>
 
-            <Route exact path="/debates"> </Route>
-            <Route exact path="/debates/:debateId"> </Route>
+            <Route exact path="/debates"> <DebatePage/> </Route>
+            <Route exact path="/debates/:debateId"> <DebateDetailPage/> </Route>
 
           </Switch>
         </div>

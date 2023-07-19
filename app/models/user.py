@@ -4,7 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSON
-from sqlalchemy import ForeignKey, DateTime, Text
+from sqlalchemy import ForeignKey, DateTime, Text, Column, Integer
+
 
 
 class User(db.Model, UserMixin):
@@ -98,6 +99,7 @@ class Debate(db.Model):
     end_time = db.Column(DateTime)
     topic = db.Column(db.String(255))
     result = db.Column(db.String(255))
+    
 
     transcripts = relationship('Transcript', backref='debate')
 
