@@ -9,7 +9,6 @@ conv_gen_route = Blueprint('conv_gen_route', __name__)
 
 # Be sure to use your own OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
-print('\n',f'OpenAI API Key: {openai.api_key}')
 
 @conv_gen_route.route('/create_conversation', methods=['POST'])
 def create_conversation():
@@ -25,6 +24,7 @@ def create_conversation():
     bot_2 = Bot.query.get(bot_id_2)
     conv_settings = ConversationSetting.query.get(conv_settings_id)
 
+    # Validate the parameters
     if not bot_1 or not bot_2:
         return jsonify({"error": "Bot not found."}), 400
 
@@ -44,29 +44,29 @@ def create_conversation():
     db.session.commit()
 
     # Initialize the conversation
-    initial_message = {
+    system_def = {
         "role": "system",
-        "content": f"Your name is {bot_1.name} and you are {bot_1.settings}. You are talking with {bot_2.name}. "
-                   f"Persuade them to your side regarding {new_debate.topic}."
-                   f"Limit your response to 150 characters or less"
+        "content": "You are a silent assistant who specializes in emulating speech between two people"
+    }
+    user_request = {
+        "role": "user",
+        "content": f"Emulate an arguement on this topic: {new_debate.topic} between {bot_1.name} who has these settings {bot_1.settings} and {bot_2.name} who has these settings {bot_2.settings}. "
+                   f"Limit each person's response to 150 characters or less."
+                   f"Seperate each response with a new line"
+                   f"Start each response with ###"
+                   f"Utilize all {max_messages} messages"
     }
 
     chat = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[initial_message]
+        messages=[system_def, user_request]
     )
-
-
-    assistant_message = chat['choices'][0]['message']['content']
-    new_message = Message(debate_id=new_debate.id, bot_id=bot_1.id, content=assistant_message, role="assistant", time=datetime.utcnow())
-    db.session.add(new_message)
-    db.session.commit()
-
 
     return jsonify({
         "message": "Conversation created successfully",
         "debate": {
             "id": new_debate.id,
             "topic": new_debate.topic
-        }
+        },
+        "openAI_res": chat
     }), 200

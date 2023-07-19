@@ -2,6 +2,7 @@
 from flask import Blueprint, request, jsonify
 import os
 import openai
+import json
 from app.models.user import db, Bot, Message, Debate, ConversationSetting
 from datetime import datetime
 
@@ -18,10 +19,12 @@ def create_conversation():
     conv_settings_id = request.json.get('conv_settings_id')
     max_messages = request.json.get('max_messages')
     topic = request.json.get('topic')
+    length_limit = request.json.get('length_limit')
 
     # Fetch the bots
     bot_1 = Bot.query.get(bot_id_1)
     bot_2 = Bot.query.get(bot_id_2)
+    bot_names = [bot_1.name, bot_2.name]
     conv_settings = ConversationSetting.query.get(conv_settings_id)
 
     # Validate the parameters
@@ -46,13 +49,20 @@ def create_conversation():
     # Initialize the conversation
     system_def = {
         "role": "system",
-        "content": "You are an assistant who specializes in helping emulate conversations between "
+        "content": "You are a silent assistant who specializes in emulating speech between two people."
     }
     user_request = {
         "role": "user",
-        "content": f"Emulate a conversation/debate on this topic: {new_debate.topic} between {bot_1.name} who has these settings {bot_1.settings} and {bot_2.name} who has these settings {bot_2.settings}. "
-                   f"Limit each response to 150 characters or less."
-                   f"Seperate each response with a new line"
+        "content": f"Emulate an argument on this topic: '{new_debate.topic}' between '{bot_1.name}' who has these settings {bot_1.settings} and '{bot_2.name}' who has these settings {bot_2.settings}. "
+                "Limit each person's response to 50 words or less. "
+                "Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code:"
+                '''
+                try:
+                chat_content = chat['choices'][0]['message']['content']
+                chat_json = json.loads(chat_content)
+                messages = chat_json['messages']
+                '''
+                f"There should be exactly {max_messages} messages."
     }
 
     chat = openai.ChatCompletion.create(
@@ -60,19 +70,13 @@ def create_conversation():
         messages=[system_def, user_request]
     )
 
-    # Iterate over the model responses and add them to the Message table
-    for i, choice in enumerate(chat['choices'], start=1):
-        message = choice['message']
-        assistant_message = message['content']
-        bot_id = bot_id_1 if i % 2 != 0 else bot_id_2  # Alternate between bots based on message index
-        new_message = Message(debate_id=new_debate.id, bot_id=bot_id, content=assistant_message, role=message['role'], time=datetime.utcnow())
-        db.session.add(new_message)
-    db.session.commit()
-
-
-    # Retrieve all messages associated with the debate
-    messages = Message.query.filter_by(debate_id=new_debate.id).all()
-    messages_response = [message.to_dict() for message in messages]
+    try:
+        chat_content = chat['choices'][0]['message']['content']
+        chat_json = json.loads(chat_content)
+        messages = chat_json['messages']
+    except (json.JSONDecodeError, KeyError):
+        messages = []
+        print("Unexpected response format from chat API")
 
     return jsonify({
         "message": "Conversation created successfully",
@@ -80,5 +84,6 @@ def create_conversation():
             "id": new_debate.id,
             "topic": new_debate.topic
         },
-        "messages": messages_response
+        "cleaned_res": messages,
+        "openAI_res":chat
     }), 200
