@@ -15,6 +15,8 @@ import ConvSettingDetailPage from './components/Conversation/ConvDetailPage/Conv
 
 import OtherBotsPage from './components/OtherBots/OtherBotsPage/OtherBotsPage';
 
+import ChallengePage from './components/Challenge/ChallengePage/ChallengePage';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,6 +44,7 @@ function App() {
               <SignupFormPage />
             </Route>
             <Route path="/challenge">
+              <ChallengePage/>
             </Route>
             <Route exact path="/bots">
               <BotDashboard />
