@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import ChallengeBotCardArray from '../ChallengeBotArray/ChallengeBotArray';
+import OtherBotCardArray from '../OtherBotCardArray/OtherBotCardArray';
 
 
 function OtherBotsPage() {
@@ -28,7 +28,7 @@ function OtherBotsPage() {
     <>
     <div className='challenge-page-title'>
       <h1>Other Bots</h1>
-      <ChallengeBotCardArray/>
+      <OtherBotCardArray/>
     </div>
     </>
   );

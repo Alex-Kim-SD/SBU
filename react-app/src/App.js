@@ -13,7 +13,7 @@ import BotDashboard from './components/Bot/BotDashboard/BotDashboard'
 import ConvDashboard from './components/Conversation/ConvDashboard/ConvDashboard';
 import ConvSettingDetailPage from './components/Conversation/ConvDetailPage/ConvDetailPage';
 
-import OtherBotsPage from './components/Challenge/OtherBotsPage/OtherBotsPage';
+import OtherBotsPage from './components/OtherBots/OtherBotsPage/OtherBotsPage';
 
 function App() {
   const dispatch = useDispatch();

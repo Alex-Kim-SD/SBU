@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ChallengeBotCard from '../ChallengeBotCard/ChallengeBotCard';
+import OtherBotCard from '../OtherBotCard/OtherBotCard';
 import { fetchOtherBots } from '../../../store/botSlice';
 
-function ChallengeBotCardArray({ userId }) {
+function OtherBotCardArray({ userId }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,10 +21,10 @@ function ChallengeBotCardArray({ userId }) {
     return (
         <div className='card-list'>
             {bots.map(bot => (
-                <ChallengeBotCard key={bot.id} bot={bot} />
+                <OtherBotCard key={bot.id} bot={bot} />
             ))}
         </div>
     );
 }
 
-export default ChallengeBotCardArray;
+export default OtherBotCardArray;

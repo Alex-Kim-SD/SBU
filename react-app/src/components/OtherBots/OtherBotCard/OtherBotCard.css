@@ -1,4 +1,4 @@
-.challenge-bot-card {
+.other-bot-card {
     display: flex;
     align-items: center;
     background-color: #f5f5f5;
@@ -8,11 +8,11 @@
     transition: background-color 0.2s ease;
   }
 
-  .challenge-bot-card:hover {
+  .other-bot-card:hover {
     background-color: #e0e0e0;
   }
 
-  .challenge-bot-avatar {
+  .other-bot-avatar {
     width: 48px;
     height: 48px;
     object-fit: cover;
@@ -20,17 +20,17 @@
     margin-right: 16px;
   }
 
-  .challenge-bot-details {
+  .other-bot-details {
     flex-grow: 1;
   }
 
-  .challenge-bot-name {
+  .other-bot-name {
     margin: 0;
     font-size: 18px;
     font-weight: bold;
   }
 
-  .challenge-bot-settings {
+  .other-bot-settings {
     margin: 8px 0 0;
     font-size: 14px;
     color: #666;
