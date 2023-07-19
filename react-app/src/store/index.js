@@ -6,11 +6,13 @@ import logger from 'redux-logger';
 import session from './session';
 import bots from './botSlice';
 import convSettings from './convSettingsSlice';
+import loading from './loadingSlice'
 
 const rootReducer = combineReducers({
   session,
   bots,
   convSettings,
+  loading
 });
 
 let enhancer;

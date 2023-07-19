@@ -7,7 +7,7 @@ const SideNavBar = () => {
         <div className="side-nav">
             <ul>
                 <li>
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/Challenge">Challenge</NavLink>
                 </li>
                 <li>
                     <NavLink exact to="/bots">Bots</NavLink>
