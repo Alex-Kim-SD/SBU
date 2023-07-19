@@ -2,9 +2,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchBots } from '../../../store/botSlice';
+import ChallengeBotCardArray from '../ChallengeBotArray/ChallengeBotArray';
 
-function ChallengePage() {
+
+function OtherBotsPage() {
   const { botId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -15,7 +16,7 @@ function ChallengePage() {
     if (!currentUser) {
       history.push('/login');
     } else {
-      dispatch(fetchBots());
+
     }
   }, [botId, dispatch, currentUser, history]);
 
@@ -26,10 +27,11 @@ function ChallengePage() {
   return (
     <>
     <div className='challenge-page-title'>
-      <h1>Challenge Bots</h1>
+      <h1>Other Bots</h1>
+      <ChallengeBotCardArray/>
     </div>
     </>
   );
 }
 
-export default ChallengePage;
+export default OtherBotsPage;

@@ -63,7 +63,7 @@ def create_conversation():
     print('\n','User Request',user_request,'\n')
 
     chat = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-16k",
         messages=[system_def, user_request]
     )
 

@@ -13,7 +13,7 @@ import BotDashboard from './components/Bot/BotDashboard/BotDashboard'
 import ConvDashboard from './components/Conversation/ConvDashboard/ConvDashboard';
 import ConvSettingDetailPage from './components/Conversation/ConvDetailPage/ConvDetailPage';
 
-import ChallengePage from './components/Challenge/ChallengePage/ChallengePage';
+import OtherBotsPage from './components/Challenge/OtherBotsPage/OtherBotsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ function App() {
             <Route path="/signup">
               <SignupFormPage />
             </Route>
-            <Route path="/home">
+            <Route path="/challenge">
             </Route>
             <Route exact path="/bots">
               <BotDashboard />
@@ -55,8 +55,8 @@ function App() {
             <Route exact path="/settings/:settingId">
               <ConvSettingDetailPage/>
             </Route>
-            <Route exact path="/challenge">
-              <ChallengePage/>
+            <Route exact path="/other-bots">
+              <OtherBotsPage/>
             </Route>
           </Switch>
         </div>

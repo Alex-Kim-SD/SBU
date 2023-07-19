@@ -1,18 +1,17 @@
-// SBU/react-app/src/components/BotCardArray/BotCardArray.js
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import BotCard from '../BotCard/BotCard';
-import { fetchBots } from '../../../store/botSlice';
+import ChallengeBotCard from '../ChallengeBotCard/ChallengeBotCard';
+import { fetchOtherBots } from '../../../store/botSlice';
 
-function BotCardArray({ userId }) {
+function ChallengeBotCardArray({ userId }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchBots());
+        dispatch(fetchOtherBots());
     }, [dispatch]);
 
     const bots = useSelector(state =>
-        Object.values(state.bots.your_bots).filter(bot => bot.user_id === userId)
+        Object.values(state.bots.other_bots).filter(bot => bot.user_id !== userId)
     );
 
     if (!bots.length) {
@@ -22,10 +21,10 @@ function BotCardArray({ userId }) {
     return (
         <div className='card-list'>
             {bots.map(bot => (
-                <BotCard key={bot.id} bot={bot} />
+                <ChallengeBotCard key={bot.id} bot={bot} />
             ))}
         </div>
     );
 }
 
-export default BotCardArray;
+export default ChallengeBotCardArray;

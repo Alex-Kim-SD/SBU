@@ -16,7 +16,7 @@ const SideNavBar = () => {
                     <NavLink exact to="/settings">Conv. Settings</NavLink>
                 </li>
                 <li>
-                    <NavLink exact to="/challenge">Challenge</NavLink>
+                    <NavLink exact to="/other-bots">Other Bots</NavLink>
                 </li>
             </ul>
         </div>

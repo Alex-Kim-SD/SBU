@@ -7,6 +7,27 @@ from sqlalchemy.exc import SQLAlchemyError
 bot_routes = Blueprint('bots', __name__)
 
 # READ All
+@bot_routes.route('/all-ex', methods=['GET'])
+@login_required
+def read_all_bots_all_ex():
+    bots = Bot.query.filter(Bot.user_id != current_user.id).all()
+    if bots:
+        return jsonify([bot.to_dict() for bot in bots]), 200
+    else:
+        return jsonify(error='No bots found'), 404
+
+# READ All
+@bot_routes.route('/all', methods=['GET'])
+@login_required
+def read_all_bots_all():
+    bots = Bot.query.all()
+    if bots:
+        return jsonify([bot.to_dict() for bot in bots]), 200
+    else:
+        return jsonify(error='No bots found'), 404
+
+
+# READ All (user)
 @bot_routes.route('', methods=['GET'])
 @login_required
 def read_all_bots():
