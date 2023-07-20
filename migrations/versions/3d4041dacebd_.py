@@ -1,8 +1,8 @@
-"""Add owner_id column to debates table
+"""empty message
 
-Revision ID: f39d35cabfb1
+Revision ID: 3d4041dacebd
 Revises:
-Create Date: 2023-07-19 10:05:52.801155
+Create Date: 2023-07-19 15:34:36.863674
 
 """
 from alembic import op
@@ -12,7 +12,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'f39d35cabfb1'
+revision = '3d4041dacebd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -65,8 +65,8 @@ def upgrade():
     sa.Column('result', sa.String(length=255), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['conversation_setting_id'], ['conversation_settings.id'], ),
-    sa.ForeignKeyConstraint(['initiator_bot_id'], ['bots.id'], ),
-    sa.ForeignKeyConstraint(['opponent_bot_id'], ['bots.id'], ),
+    sa.ForeignKeyConstraint(['initiator_bot_id'], ['bots.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['opponent_bot_id'], ['bots.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -95,12 +95,13 @@ def upgrade():
     sa.Column('bot_id', sa.Integer(), nullable=False),
     sa.Column('message', sa.Text(), nullable=True),
     sa.Column('time', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['bot_id'], ['bots.id'], ),
+    sa.ForeignKeyConstraint(['bot_id'], ['bots.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
         op.execute(f"ALTER TABLE transcripts SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 
