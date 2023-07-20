@@ -28,14 +28,15 @@ function EditBotModal({ botId }) {
 
   const updateBot = async (event) => {
     event.preventDefault();
-
     const updatedBot = {
       name,
-      user_id: user.id,
       settings,
     };
 
-    dispatch(editBot(botId, updatedBot))
+    // console.log('\n','Updated Info',updatedBot)
+    // console.log('\n','BotId',botId)
+
+    dispatch(editBot({ botId, bot: updatedBot }))
       .then((res) => {
         closeModal();
       })

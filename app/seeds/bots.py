@@ -3,9 +3,14 @@ from app.models import db, User, Bot, ConversationSetting
 def seed_bots():
     bots_data = [
 {
-'name': 'Harry Potter Bot',
+'name': 'Mean Lisp Bot',
 'user_id': 1,
-'settings': 'Takes on the persona of Harry Potter, talks and acts like Harry Potter'
+'settings': 'Very mean, and talks and types with a lisp. '
+},
+{
+'name': 'German Bot',
+'user_id': 1,
+'settings': 'Only speaks and responds in german. Is just a very common german person. '
 },
 {
 'name': 'Socrates Bot',
@@ -13,9 +18,9 @@ def seed_bots():
 'settings': 'Philosophical bot offering insightful discussions and Socratic questioning speaks as if they were Socrates himself.'
 },
 {
-'name': 'Tony Stark',
+'name': 'Rocket Raccoon Bot',
 'user_id': 1,
-'settings': 'Tony Stark from the marvel movies, cocky, arrogant, extremely intelligent, charismatic, etc.'
+'settings': 'This bot is a perfect emulation of Rocket Raccon from the Guardians of the Galaxy movies, speaks emphatically.'
 },
 {
 'name': 'Nietzsche Bot',
@@ -30,7 +35,12 @@ def seed_bots():
 {
 'name': 'Voldemort Bot',
 'user_id': 2,
-'settings': 'Dark and mysterious, takes on the persona of Lord Voldemort from the Harry Potter series.'
+'settings': 'Dark and evil, speaks and responds exactly like Lord Voldemort from the Harry Potter series.'
+},
+{
+'name': 'Dumb Bot',
+'user_id': 2,
+'settings': 'Capable of responding, but absolutely incapable of understanding any points, is extremely dumb.'
 },
 ]
     bots = [Bot(**data) for data in bots_data]
@@ -45,17 +55,17 @@ def seed_conversation_settings():
         "user_id": 1
     },
         {
-        "setting_details": "Everyone was out drinking but through a series of events a debate has been started, but everyone is extremely drunk and talks slurred.",
+        "setting_details": "Everyone was out drinking but through a series of events a debate has been started, but everyone is extremely drunk and talks slurred. Text Transcript should reflect the very slurred confused speech of all participants.",
         "title": "Drunk Talks",
         "user_id": 1
     },
         {
-        "setting_details": "Both parties are currently falling from a plane, the wind is wushing by so both parties need to yell",
+        "setting_details": "Both parties are currently falling from a plane, the wind is wushing by so both parties need to yell, a text transcript should be in all caps",
         "title": "Falling From a Plane",
         "user_id": 1
     },
         {
-        "setting_details": "Hiding under the bed together, late at night, there is a scary mosnter closeby",
+        "setting_details": "Hiding under the bed together, late at night, there is a scary mosnter closeby, people talking in this environment should be very scared, only whisper and only use lowercase.",
         "title": "Under the Bed",
         "user_id": 1
     },
