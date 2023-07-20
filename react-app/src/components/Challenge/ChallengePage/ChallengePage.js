@@ -65,6 +65,7 @@ const ChallengePage = () => {
     if (botId1 && botId2 && convSettingsId && maxMessages && topic) {
       setLoading(true);
 
+      console.log(currentUserId);
       const newConversation = await dispatch(
         createConversation({
           bot_id_1: botId1,

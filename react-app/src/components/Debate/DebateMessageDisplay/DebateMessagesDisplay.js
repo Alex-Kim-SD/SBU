@@ -7,7 +7,9 @@ const MessageList = () => {
 
   // Check if messages is not an array
   if (!Array.isArray(messages)) {
-    return null;
+    return <div>
+     Messages Array is empty
+    </div>;
   }
 
   return (

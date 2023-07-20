@@ -21,6 +21,8 @@ def create_conversation():
     topic = request.json.get('topic')
     length_limit = request.json.get('length_limit')
     owner_id = request.json.get('owner_id')
+    if not owner_id:
+        return jsonify({"error": "Owner not found"}), 400
 
     # Fetch the bots
     bot_1 = Bot.query.get(bot_id_1)
