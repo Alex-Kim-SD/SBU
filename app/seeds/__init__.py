@@ -1,3 +1,4 @@
+# SBU/app/seeds/__init__.py
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .bots import seed_b_c, undo_b_c

@@ -93,15 +93,13 @@ class Debate(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     conversation_setting_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("conversation_settings")}.id'), nullable=False)
-    initiator_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
-    opponent_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
+    initiator_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
+    opponent_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     start_time = db.Column(DateTime)
     end_time = db.Column(DateTime)
     topic = db.Column(db.String(255))
     result = db.Column(db.String(255))
     owner_id = Column(Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
-
-
 
     transcripts = relationship('Transcript', backref='debate')
 
@@ -119,7 +117,6 @@ class Debate(db.Model):
         }
 
 
-
 class Transcript(db.Model):
     __tablename__ = 'transcripts'
 
@@ -128,7 +125,7 @@ class Transcript(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
-    bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
+    bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     message = db.Column(Text)
     time = db.Column(DateTime)
 
@@ -140,6 +137,7 @@ class Transcript(db.Model):
             'message': self.message,
             'time': self.time.isoformat() if self.time else None,
         }
+
 
 class Message(db.Model):
     __tablename__ = 'messages'

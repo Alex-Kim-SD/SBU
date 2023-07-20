@@ -50,11 +50,23 @@ function CreateBotModal() {
       <form onSubmit={createBot}>
         <label>
           Bot Name:
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+          <input
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+            maxLength={30} // Maximum length of 30 characters
+            placeholder="Enter Bot Name"
+          />
         </label>
         <label>
           Bot Settings:
-          <textarea value={settings} onChange={e => setSettings(e.target.value)} />
+          <textarea
+            value={settings}
+            onChange={e => setSettings(e.target.value)}
+            maxLength={500} // Maximum length of 500 characters
+            placeholder="Describe your Bot! Be as specific as possible."
+          />
         </label>
         <div className="button-group">
           <button type="submit" className="create-button">Create Bot</button>
