@@ -76,19 +76,25 @@ const botSlice = createSlice({
       })
       .addCase(fetchBots.fulfilled, (state, { payload }) => {
         state.your_bots = {};
-        payload.forEach(bot => state.your_bots[bot.id] = bot);
+        if (Array.isArray(payload)) {
+          payload.forEach(bot => state.your_bots[bot.id] = bot);
+        }
       })
       .addCase(fetchAllBots.fulfilled, (state, { payload }) => {
         state.your_bots = {};
         state.other_bots = {};
-        payload.forEach(bot => {
-          state.your_bots[bot.id] = bot;
-          state.other_bots[bot.id] = bot;
-        });
+        if (Array.isArray(payload)) {
+          payload.forEach(bot => {
+            state.your_bots[bot.id] = bot;
+            state.other_bots[bot.id] = bot;
+          });
+        }
       })
       .addCase(fetchOtherBots.fulfilled, (state, { payload }) => {
         state.other_bots = {};
-        payload.forEach(bot => state.other_bots[bot.id] = bot);
+        if (Array.isArray(payload)) {
+          payload.forEach(bot => state.other_bots[bot.id] = bot);
+        }
       })
       .addCase(addBot.fulfilled, (state, { payload }) => {
         state.your_bots[payload.id] = payload;
