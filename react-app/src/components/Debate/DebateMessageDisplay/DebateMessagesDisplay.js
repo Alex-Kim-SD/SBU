@@ -5,6 +5,11 @@ import './MessageList.css';
 const MessageList = () => {
   const messages = useSelector((state) => state.message.messages);
 
+  // Check if messages is not an array
+  if (!Array.isArray(messages)) {
+    return null;
+  }
+
   return (
     <div className="message-list">
       <h2 className="message-list-heading">Conversation Transcript</h2>
