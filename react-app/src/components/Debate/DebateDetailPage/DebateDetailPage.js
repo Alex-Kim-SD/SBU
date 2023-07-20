@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { fetchDebate } from '../../../store/debateSlice';
 import MessageList from '../DebateMessageDisplay/DebateMessagesDisplay';
 import { fetchMessages } from '../../../store/messageSlice';
+import './DebateDetailPage.css';
 
 function DebateDetailPage() {
   const dispatch = useDispatch();
@@ -23,13 +24,10 @@ function DebateDetailPage() {
   }
 
   return (
-    <div>
-      <h1>Debate Page</h1>
-      <h2>{debate.topic}</h2>
-      <p>Debate Id: {debate.id}</p>
-      <p>Start Time: {debate.start_time}</p>
-      <p>End Time: {debate.end_time}</p>
-      <p>Result: {debate.result}</p>
+    <div className="debate-detail-page">
+      <h1 className="debate-heading">Debate Page</h1>
+      <h2 className="debate-topic">{debate.topic}</h2>
+      <p className="debate-id">Debate Id: {debate.id}</p>
       <div className='debate-transcript'>
         <MessageList messages={messages} />
       </div>

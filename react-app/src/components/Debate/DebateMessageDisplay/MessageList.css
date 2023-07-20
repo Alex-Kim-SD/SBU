@@ -1,0 +1,33 @@
+.message-list {
+    padding: 16px;
+  }
+
+  .message-list-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .message-list-container {
+    list-style: none;
+    padding: 0;
+  }
+
+  .message-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .message-item.assistant {
+    flex-direction: row;
+  }
+
+  .message-name {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .message-content {
+    color: #666;
+  }

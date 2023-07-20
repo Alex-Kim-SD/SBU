@@ -1,0 +1,25 @@
+.debate-detail-page {
+    padding: 16px;
+  }
+
+  .debate-heading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .debate-topic {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .debate-id {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+
+  .debate-transcript {
+    margin-top: 32px;
+  }
