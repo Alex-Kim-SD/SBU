@@ -49,6 +49,7 @@ def update_conversation_setting(id):
     db.session.commit()
     return jsonify(setting.to_dict())
 
+
 @conversation_settings.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_conversation_setting(id):

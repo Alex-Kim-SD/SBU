@@ -1,67 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useModal } from "../../../context/Modal"
+import { useModal } from "../../../context/Modal";
 import { fetchBot, editBot } from '../../../store/botSlice';
+import './EditBotModal.css';
 
 function EditBotModal({ botId }) {
-    const dispatch = useDispatch();
-    const { closeModal } = useModal();
-    const [name, setName] = useState('');
-    const [settings, setSettings] = useState('');
-    const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+  const [name, setName] = useState('');
+  const [settings, setSettings] = useState('');
+  const [errors, setErrors] = useState([]);
 
-    const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        dispatch(fetchBot(botId));
-    }, [botId, dispatch]);
+  useEffect(() => {
+    dispatch(fetchBot(botId));
+  }, [botId, dispatch]);
 
-    const bot = useSelector(state => state.bots[botId]);
-    useEffect(() => {
-        if (bot) {
-            setName(bot.name);
-            setSettings(bot.settings);
-        }
-    }, [bot]);
+  const bot = useSelector(state => state.bots[botId]);
 
-    const updateBot = async (event) => {
-        event.preventDefault();
+  useEffect(() => {
+    if (bot) {
+      setName(bot.name);
+      setSettings(bot.settings);
+    }
+  }, [bot]);
 
-        const updatedBot = {
-            name,
-            user_id: user.id,
-            settings,
-        };
+  const updateBot = async (event) => {
+    event.preventDefault();
 
-        dispatch(editBot(botId, updatedBot))
-            .then((res) => {
-                closeModal();
-            })
-            .catch((err) => {
-                setErrors(err);
-            });
+    const updatedBot = {
+      name,
+      user_id: user.id,
+      settings,
     };
 
-    return (
-        <>
-            <h2>Edit Bot</h2>
-            {errors.map((error, i) => (
-                <div key={i}>{error}</div>
-            ))}
-            <form onSubmit={updateBot}>
-                <label>
-                    Bot Name:
-                    <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-                </label>
-                <label>
-                    Bot Settings:
-                    <textarea value={settings} onChange={e => setSettings(e.target.value)} />
-                </label>
-                <button type="submit">Save Changes</button>
-                <button type="button" onClick={closeModal}>Cancel</button>
-            </form>
-        </>
-    );
+    dispatch(editBot(botId, updatedBot))
+      .then((res) => {
+        closeModal();
+      })
+      .catch((err) => {
+        setErrors(err);
+      });
+  };
+
+  return (
+    <div className="edit-bot-modal">
+      <h2>Edit Bot</h2>
+      {errors.map((error, i) => (
+        <div key={i} className="error">{error}</div>
+      ))}
+      <form onSubmit={updateBot}>
+        <label>
+          Bot Name:
+          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+        </label>
+        <label>
+          Bot Settings:
+          <textarea value={settings} onChange={e => setSettings(e.target.value)} />
+        </label>
+        <div className="button-group">
+          <button type="submit" className="save-button">Save Changes</button>
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default EditBotModal;

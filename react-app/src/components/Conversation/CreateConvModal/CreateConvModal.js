@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../../context/Modal';
 import { useHistory } from 'react-router-dom';
+import './CreateConvModal.css';
 
-function CreateBotModal() {
+function CreateConvModal() {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [title, setTitle] = useState('');
@@ -40,10 +41,10 @@ function CreateBotModal() {
   };
 
   return (
-    <>
+    <div className="create-conv-modal">
       <h2>Create Settings</h2>
       {errors.map((error, i) => (
-        <div key={i}>{error}</div>
+        <div key={i} className="error">{error}</div>
       ))}
       <form onSubmit={createConversationSetting}>
         <label>
@@ -54,11 +55,13 @@ function CreateBotModal() {
           Setting Details:
           <textarea value={settingDetails} onChange={e => setSettingDetails(e.target.value)} />
         </label>
-        <button type="submit">Create Conversation Setting</button>
-        <button type="button" onClick={closeModal}>Cancel</button>
+        <div className="button-group">
+          <button type="submit" className="create-button">Create Conversation Setting</button>
+          <button type="button" className="cancel-button" onClick={closeModal}>Cancel</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
-export default CreateBotModal;
+export default CreateConvModal;
