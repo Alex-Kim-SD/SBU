@@ -6,6 +6,7 @@ body {
   .app-content {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   .app-content .SideNavBar {

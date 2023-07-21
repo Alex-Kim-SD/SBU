@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { login } from "../../store/session";
 import "./LoginForm.css";
 
@@ -30,9 +30,9 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <h1 className="login-title">Log In</h1>
+      <form className="login-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -41,6 +41,7 @@ function LoginFormPage() {
         <label>
           Email
           <input
+            className="login-input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -50,18 +51,20 @@ function LoginFormPage() {
         <label>
           Password
           <input
+            className="login-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
-        <button type="button" onClick={handleDemoLogin}>
+        <button className="login-button" type="submit">Log In</button>
+        <button className="demo-login-button" type="button" onClick={handleDemoLogin}>
           Demo Login
         </button>
       </form>
-    </>
+      <p className="signup-link-text">Don't have an account? <Link to="/signup">Make one here</Link></p>
+    </div>
   );
 }
 
