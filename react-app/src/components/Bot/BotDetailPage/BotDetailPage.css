@@ -1,48 +1,87 @@
-.bot-detail-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-  }
+.selected-bot-detail-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 747px;
+  height: 170px;
+  flex-shrink: 0;
+  border-radius: 100.5px;
+  background: #2B688A;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-  .selected-bot-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+.selected-bot-detail-image-container {
+  width: 170px;
+  height: 170px;
+  flex-shrink: 0;
+  border-radius: 100.5px;
+  background: #50BCE5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-  .bot-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+.selected-bot-img {
+  width: 98px;
+  height: 98px;
+  object-fit: cover;
+}
 
-  .bot-name {
-    font-size: 24px;
-    color: #333;
-  }
+.selected-bot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-  .bot-settings {
-    font-size: 18px;
-    color: #666;
-  }
+.selected-bot-name {
+  width: 218px;
+  height: 42px;
+  color: #FFF;
+  text-align: center;
+  font-family: Sarpanch;
+  font-size: 28px;
+  font-weight: 700;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-  .delete-bot-button, .edit-bot-button {
-    width: 100px;
-    height: 35px;
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.selected-bot-settings {
+  font-size: 18px;
+  color: #FFF;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0em;
+}
 
-  .delete-bot-button {
-    background-color: #ff4d4f;
-  }
+.selected-bot-button-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .edit-bot-button {
-    background-color: #1890ff;
-  }
+.delete-selected-bot-button,
+.edit-selected-bot-button {
+  border: none;
+  font-family: Sarpanch;
+  width: 150px;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.delete-selected-bot-button {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.edit-selected-bot-button {
+  background-color: #1890ff;
+  color: white;
+}

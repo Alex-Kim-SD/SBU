@@ -1,0 +1,25 @@
+.bot-detail-title {
+    display: flex;
+    width: 700px;
+    height: 49px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #2B688A;
+    font-family: Sarpanch;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bot-dash-container {
+    width: 780px;
+    height: 593px;
+    flex-shrink: 0;
+    border-radius: 30px;
+    background: #EDF4F8;
+    margin: 20px; /* This adds margin around the container */
+    max-width: 100%; /* This ensures the container width scales with the screen size */
+    box-sizing: border-box; /* This ensures padding and border are included in element's total width and height */
+}

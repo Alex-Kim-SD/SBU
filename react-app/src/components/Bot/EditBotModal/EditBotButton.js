@@ -5,7 +5,7 @@ import EditBotModal from './EditBotModal';
 function EditBotButton({ botId }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const handleClick = () => {
+  const handleEditClick = () => {
     setModalContent(<EditBotModal botId={botId} />);
     setOnModalClose(() => {
       console.log("Modal has been closed.");
@@ -13,8 +13,8 @@ function EditBotButton({ botId }) {
   };
 
   return (
-    <button onClick={handleClick}>
-      Open EditBotModal
+    <button onClick={handleEditClick}>
+      Edit
     </button>
   );
 }

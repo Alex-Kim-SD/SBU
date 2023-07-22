@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../../context/Modal';
 import { useHistory } from 'react-router-dom';
 import './CreateBotModal.css';
+import { addBot } from '../../../store/botSlice';
 
 function CreateBotModal() {
   const dispatch = useDispatch();
@@ -16,30 +17,29 @@ function CreateBotModal() {
   const history = useHistory();
 
   const createBot = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Send fetch request
-    const response = await fetch('/api/bots', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        user_id: user.id,
-        settings,
-      }),
-    });
-
-    if(response.ok) {
-      const bot = await response.json();
-      history.push(`/bots/${bot.id}`);
-      closeModal();
-    } else {
-      const data = await response.json();
-      setErrors(data.errors);
-    }
+  const botData = {
+    name,
+    user_id: user.id,
+    settings,
   };
+
+  dispatch(addBot(botData)) // Dispatch addBot action
+    .then((res) => {
+      if (res.type === "bot/addBot/fulfilled") {
+        history.push(`/bots`);
+        closeModal();
+      } else {
+        const error = res.error.message;
+        setErrors([...errors, error]);
+      }
+    })
+    .catch((err) => {
+      setErrors([...errors, err.message]);
+    });
+};
+
 
   return (
     <div className="create-bot-modal">

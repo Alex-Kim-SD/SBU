@@ -2,6 +2,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Thunks
+export const selectBot = createAsyncThunk('bot/selectBot', async (botId) => {
+  return botId;
+});
+
 export const fetchBot = createAsyncThunk('bot/fetchBot', async (botId) => {
   const res = await fetch(`/api/bots/${botId}`);
   const data = await res.json();
@@ -61,8 +65,8 @@ export const deleteBot = createAsyncThunk('bot/deleteBot', async (botId) => {
 const initialState = {
   your_bots: {},
   other_bots: {},
+  selectedBot: null,
 };
-
 // Slice
 const botSlice = createSlice({
   name: 'bot',
@@ -70,6 +74,9 @@ const botSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(selectBot.fulfilled, (state, { payload }) => {
+        state.selectedBot = payload;
+      })
       .addCase(fetchBot.fulfilled, (state, { payload }) => {
         state.your_bots[payload.id] = payload;
         state.other_bots[payload.id] = payload;
@@ -99,6 +106,7 @@ const botSlice = createSlice({
       .addCase(addBot.fulfilled, (state, { payload }) => {
         state.your_bots[payload.id] = payload;
         state.other_bots[payload.id] = payload;
+        state.selectedBot = payload.id;
       })
       .addCase(editBot.fulfilled, (state, { payload }) => {
         state.your_bots[payload.id] = payload;
