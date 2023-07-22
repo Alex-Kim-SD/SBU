@@ -7,6 +7,7 @@ import { authenticate } from './store/session';
 import Navigation from './components/Navigation';
 import SideNavBar from './components/SideNavBar/SideNavBar';
 
+import HomePage from './components/HomePage/HomePage/HomePage';
 import BotDetailPage from './components/Bot/BotDetailPage/BotDetailPage'
 import BotDashboard from './components/Bot/BotDashboard/BotDashboard'
 
@@ -44,6 +45,8 @@ function App() {
             <Route path="/login"> <LoginFormPage /> </Route>
 
             <Route path="/signup"> <SignupFormPage /> </Route>
+
+            <Route path="/home"> <HomePage /> </Route>
 
             <Route path="/challenge"><ChallengePage /> </Route>
 

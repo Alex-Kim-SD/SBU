@@ -1,9 +1,12 @@
+// ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import "./Navigation.css"
+import profile from "../../assets/profile.png"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -19,7 +22,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -34,23 +37,20 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
+    <div className="profile-button" onClick={openMenu}>
+      <img src={profile} alt="Profile" />
+      <ul className={`profile-dropdown ${showMenu ? 'show' : ''}`} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
+          <div className="profile-dropdown-menu">
+            <p>{user.username}</p>
+            <p>{user.email}</p>
+            <p>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
+            </p>
+          </div>
         ) : (
           <>
             <OpenModalButton
@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 
