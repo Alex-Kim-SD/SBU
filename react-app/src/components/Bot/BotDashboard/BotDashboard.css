@@ -20,6 +20,7 @@
     border-radius: 30px;
     background: #EDF4F8;
     margin: 20px; /* This adds margin around the container */
+    padding: 15px;
     max-width: 100%; /* This ensures the container width scales with the screen size */
     box-sizing: border-box; /* This ensures padding and border are included in element's total width and height */
 }

@@ -1,1 +1,4 @@
 /* SBU/react-app/src/components/BotCardArray/BotCardArray.module.css */
+.bot-card-list {
+margin-top: 15px;
+}
