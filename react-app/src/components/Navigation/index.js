@@ -10,16 +10,8 @@ function Navigation({ isLoaded }) {
 
   return (
     <ul className="navigation-bar">
-      <div>
-        <NavLink exact to="/bots">
-          <img src={logo} alt="logo" />
-        </NavLink>
-      </div>
-      {isLoaded && sessionUser && (
-        <div>
-          <ProfileButton user={sessionUser} />
-        </div>
-      )}
+      <div> <NavLink exact to="/bots"> <img src={logo} alt="logo" /> </NavLink></div>
+      {isLoaded && sessionUser && (<div> <ProfileButton user={sessionUser} /></div>)}
     </ul>
   );
 }
