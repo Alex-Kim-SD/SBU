@@ -17,7 +17,8 @@ function EditBotModal({ botId }) {
     dispatch(fetchBot(botId));
   }, [botId, dispatch]);
 
-  const bot = useSelector(state => state.bots[botId]);
+ const bot = useSelector(state => state.bots.your_bots[botId]);
+
 
   useEffect(() => {
     if (bot) {

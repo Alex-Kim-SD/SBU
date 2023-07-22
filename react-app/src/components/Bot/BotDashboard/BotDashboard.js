@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { fetchBots } from '../../../store/botSlice';
-import robot from "../../../assets/robot.png";
 import BotCardArray from '../BotCardArray/BotCardArray'
 import CreateBotButton from '../CreateBotModal/CreateBotButton';
+import BotDetailPage from '../BotDetailPage/BotDetailPage';
 
 function BotDashboard() {
-  const { botId } = useParams();
+  const [selectedBot, setSelectedBot] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -19,17 +19,17 @@ function BotDashboard() {
     } else {
       dispatch(fetchBots());
     }
-  }, [botId, dispatch, currentUser, history]);
+  }, [dispatch, currentUser, history]);
 
   if (!currentUser) {
     return null;
   }
 
   return (
-    <div>
-      <h1>BotDashboard</h1>
-      <CreateBotButton/>
-      <BotCardArray userId={currentUser.id} />
+    <div className='BotDash-container'>
+      <BotDetailPage botId={selectedBot} />
+      <BotCardArray userId={currentUser.id} setSelectedBot={setSelectedBot} />
+      <CreateBotButton />
     </div>
   );
 }

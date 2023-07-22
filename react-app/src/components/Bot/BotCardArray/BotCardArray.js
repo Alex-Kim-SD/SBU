@@ -1,10 +1,10 @@
-// SBU/react-app/src/components/BotCardArray/BotCardArray.js
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BotCard from '../BotCard/BotCard';
 import { fetchBots } from '../../../store/botSlice';
+import './BotCardArray.css';
 
-function BotCardArray({ userId }) {
+function BotCardArray({ userId, setSelectedBot }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,9 +20,9 @@ function BotCardArray({ userId }) {
     }
 
     return (
-        <div className='card-list'>
+        <div className='bot-card-list'>
             {bots.map(bot => (
-                <BotCard key={bot.id} bot={bot} />
+                <BotCard key={bot.id} bot={bot} onSelect={() => setSelectedBot(bot.id)} />
             ))}
         </div>
     );

@@ -1,0 +1,48 @@
+.bot-detail-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+
+  .selected-bot-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .bot-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bot-name {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .bot-settings {
+    font-size: 18px;
+    color: #666;
+  }
+
+  .delete-bot-button, .edit-bot-button {
+    width: 100px;
+    height: 35px;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .delete-bot-button {
+    background-color: #ff4d4f;
+  }
+
+  .edit-bot-button {
+    background-color: #1890ff;
+  }
