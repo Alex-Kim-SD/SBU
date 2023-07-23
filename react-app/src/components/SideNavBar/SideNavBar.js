@@ -9,9 +9,9 @@ const SideNavBar = () => {
     return (
         <div className="side-nav">
             <ul className="main-list">
-                <li className="main-list-item">
+                {/* <li className="main-list-item">
                     <NavLink to="/Challenge">.challenge</NavLink>
-                </li>
+                </li> */}
                 <li className="main-list-item">
                     <NavLink exact to="/debates">.debate_logs</NavLink>
                 </li>
