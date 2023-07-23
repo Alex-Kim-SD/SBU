@@ -5,7 +5,10 @@
 body {
   display: flex;
   flex-direction: column;
+  margin: 0px;
 }
+
+
 
 .navbar-sidebar-wrapper {
   display: flex;

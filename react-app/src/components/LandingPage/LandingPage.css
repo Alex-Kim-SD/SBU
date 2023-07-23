@@ -1,0 +1,85 @@
+/* ./components/LandingPage/LandingPage.css */
+
+.landing-page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("../../assets/pixel_clouds.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .landing-page-header-box {
+    padding: 15px;
+    border-radius: 100.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #8fbde0c4;
+  }
+  .landing-page-title {
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .landing-page-subtitle {
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2em;
+  }
+
+  .landing-page-buttons {
+    display: flex;
+    gap: 2em;
+  }
+
+  .landing-page-btn {
+    padding: 1em 2em;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 2em;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+  }
+
+  .login-btn {
+    background: lightblue;
+  }
+
+  .signup-btn {
+    background: royalblue;
+  }
+
+  .landing-page-btn:hover {
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+
+  .developer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.38rem;
+}
+
+.link-icons {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s;
+}
+
+.landing-page-about {
+  margin-top: 45px;
+}

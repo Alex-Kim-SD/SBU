@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OtherBotCard from '../OtherBotCard/OtherBotCard';
 import { fetchOtherBots } from '../../../store/botSlice';
+import "./OtherBotCardArray.css"
 
 function OtherBotCardArray({ userId }) {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function OtherBotCardArray({ userId }) {
     }
 
     return (
-        <div className='card-list'>
+        <div className='other-bot-card-list'>
             {bots.map(bot => (
                 <OtherBotCard key={bot.id} bot={bot} />
             ))}

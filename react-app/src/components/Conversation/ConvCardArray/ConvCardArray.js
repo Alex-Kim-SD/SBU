@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ConvCard from '../ConvCard/ConvCard';
 import { fetchSettings } from '../../../store/convSettingsSlice';
+import "./ConvCardArray.css"
 
 function ConvCardArray({ userId }) {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function ConvCardArray({ userId }) {
   }
 
   return (
-    <div className="card-list">
+    <div className="conv-card-list">
       {convs.map(conv => (
         <ConvCard key={conv.id} conv={conv} />
       ))}
