@@ -7,7 +7,7 @@ import convSettings from './convSettingsSlice';
 import loading from './loadingSlice';
 import conversation from './convSlice';
 import debate from './debateSlice';
-import message from './messageSlice'; // Add the message slice here
+import message from './messageSlice';
 
 const rootReducer = combineReducers({
   session,
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   loading,
   conversation,
   debate,
-  message, // Include the message slice in the root reducer
+  message,
 });
 
 let enhancer;
@@ -24,10 +24,11 @@ let enhancer;
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
 } else {
-  enhancer = compose(
-    applyMiddleware(thunk, logger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  const middlewares = [thunk, logger];
+  const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
+    ? window.__REDUX_DEVTOOLS_EXTENSION__()
+    : (f) => f;
+  enhancer = compose(applyMiddleware(...middlewares), devTools);
 }
 
 const configureStore = (preloadedState) => {
