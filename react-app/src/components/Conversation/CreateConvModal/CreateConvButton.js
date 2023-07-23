@@ -13,8 +13,8 @@ function CreateConvButton() {
   };
 
   return (
-    <button onClick={handleClick}>
-      Open CreateConvModal
+    <button className='create-conv-modal-button' onClick={handleClick}>
+      Create new settings
     </button>
   );
 }
