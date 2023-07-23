@@ -39,8 +39,6 @@
 }
 
 .selected-bot-name {
-  width: 218px;
-  height: 42px;
   color: #FFF;
   text-align: center;
   font-family: Sarpanch;
@@ -60,14 +58,13 @@
 
 .selected-bot-button-container {
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
   box-sizing: border-box;
+  justify-content: left;
 }
 
 .delete-selected-bot-button,
 .edit-selected-bot-button {
-
+margin: 15px;
   border-radius: 30%;
   border: none;
   font-family: Sarpanch;

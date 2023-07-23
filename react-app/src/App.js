@@ -40,26 +40,27 @@ function App() {
         <div className="app-content">
           {!isLoginPage && !isSignupPage && <SideNavBar />}
 
-          <Switch>
-            <Route path="/login"> <LoginFormPage /> </Route>
+          <div className="RightContent">
+            <Switch>
+              <Route path="/login"> <LoginFormPage /> </Route>
 
-            <Route path="/signup"> <SignupFormPage /> </Route>
+              <Route path="/signup"> <SignupFormPage /> </Route>
 
-            <Route path="/home"> <HomePage /> </Route>
+              <Route path="/home"> <HomePage /> </Route>
 
-            <Route path="/challenge"><ChallengePage /> </Route>
+              <Route path="/challenge"><ChallengePage /> </Route>
 
-            <Route exact path="/bots"> <BotDashboard /> </Route>
-            <Route exact path="/other-bots"> <OtherBotsPage /> </Route>
-            <Route path="/bots/:botId"> <BotDetailPage /> </Route>
+              <Route exact path="/bots"> <BotDashboard /> </Route>
+              <Route exact path="/other-bots"> <OtherBotsPage /> </Route>
+              <Route path="/bots/:botId"> <BotDetailPage /> </Route>
 
-            <Route exact path="/settings"> <ConvDashboard /> </Route>
-            <Route exact path="/settings/:settingId"> <ConvSettingDetailPage /> </Route>
+              <Route exact path="/settings"> <ConvDashboard /> </Route>
+              <Route exact path="/settings/:settingId"> <ConvSettingDetailPage /> </Route>
 
-            <Route exact path="/debates"> <DebatePage/> </Route>
-            <Route exact path="/debates/:debateId"> <DebateDetailPage/> </Route>
-          </Switch>
-          
+              <Route exact path="/debates"> <DebatePage/> </Route>
+              <Route exact path="/debates/:debateId"> <DebateDetailPage/> </Route>
+            </Switch>
+          </div>
         </div>
       )}
     </>

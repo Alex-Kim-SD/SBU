@@ -5,27 +5,27 @@ import { fetchBots, selectBot } from '../../../store/botSlice';
 import './BotCardArray.css';
 
 function BotCardArray({ userId }) {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchBots());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchBots());
+  }, [dispatch]);
 
-    const bots = useSelector(state =>
-        Object.values(state.bots.your_bots).filter(bot => bot.user_id === userId)
-    );
+  const bots = useSelector(state =>
+    Object.values(state.bots.your_bots).filter(bot => bot.user_id === userId)
+  );
 
-    if (!bots.length) {
-        return <div>No bots found</div>;
-    }
+  if (!bots.length) {
+    return <div>No bots found</div>;
+  }
 
-    return (
-        <div className='bot-card-list'>
-            {bots.map(bot => (
-                <BotCard key={bot.id} bot={bot} onSelect={() => dispatch(selectBot(bot.id))} />
-            ))}
-        </div>
-    );
+  return (
+    <div className='bot-card-list'>
+      {bots.map(bot => (
+        <BotCard key={bot.id} bot={bot} onSelect={() => dispatch(selectBot(bot.id))} />
+      ))}
+    </div>
+  );
 }
 
 export default BotCardArray;

@@ -1,4 +1,60 @@
-/* SBU/react-app/src/components/BotCardArray/BotCardArray.module.css */
 .bot-card-list {
-margin-top: 15px;
-}
+    margin-top: 15px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add some spacing between cards */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    border: 1px solid #ccc; /* Add a border to the bot card list */
+    border-radius: 8px;
+    padding: 8px; /* Add some padding to the bot card list */
+    scrollbar-width: thin; /* Set the width of the scrollbar */
+  }
+
+  /* Style the scrollbar */
+  .bot-card-list::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+
+  .bot-card-list::-webkit-scrollbar-thumb {
+    background-color: #aaa; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border radius of the scrollbar thumb */
+  }
+
+  .bot-card {
+    width: 120px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(212, 215, 223);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.6s ease;
+  }
+
+  .bot-card:hover {
+    transition: 0.6 ease;
+    background-color: #50BCE5;
+  }
+
+  .bot-avatar {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 16px;
+  }
+
+  .bot-details {
+    text-align: center;
+  }
+
+  .bot-name {
+    margin: 0;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+  }

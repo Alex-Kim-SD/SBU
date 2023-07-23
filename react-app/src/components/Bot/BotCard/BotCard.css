@@ -1,37 +1,41 @@
+.bot-card-list {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: nowrap; /* Set the flex-wrap property to nowrap for horizontal scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling when content overflows */
+}
+
 .bot-card {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    padding: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
+  width: 200px; /* Set the width to create a square card */
+  height: 200px; /* Set the height to match the width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 1px; /* Add some spacing between cards */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
 
-  .bot-card:hover {
-    background-color: #e0e0e0;
-  }
+.bot-card:hover {
+  background-color: #50BCE5;
+}
 
-  .bot-avatar {
-    width: 48px;
-    height: 48px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 16px;
-  }
+.bot-avatar {
+  width: 100px; /* Adjust the avatar size to fit inside the square card */
+  height: 100px; /* Set the same height as the width to maintain the square shape */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 16px; /* Add some spacing between the avatar and bot name */
+}
 
-  .bot-details {
-    flex-grow: 1;
-  }
+.bot-details {
+  text-align: center;
+}
 
-  .bot-name {
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .bot-settings {
-    margin: 8px 0 0;
-    font-size: 14px;
-    color: #666;
-  }
+.bot-name {
+  margin: 0;
+  font-size: 16px; /* Adjust font size for the bot name */
+  font-weight: bold;
+}

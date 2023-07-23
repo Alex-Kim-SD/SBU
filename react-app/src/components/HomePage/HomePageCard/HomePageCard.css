@@ -3,18 +3,18 @@
 
 .HomePageCard {
     width: 780px;
-    height: 180px;
     flex-shrink: 0;
     border-radius: 30px;
     background: #EDF4F8;
     margin: 20px;
+    padding: 15px; /* Add padding to reflect the margin of the p tag */
+
 }
 
 .HomePageCard-title {
     margin-left: 15px;
     display: flex;
     width: 700px;
-    height: 49px;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;

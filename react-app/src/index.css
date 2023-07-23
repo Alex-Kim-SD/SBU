@@ -21,6 +21,12 @@ body {
   width: 200px;
 }
 
+.app-content .RightContent {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .app-content .Switch {
   flex-grow: 1;
 }
