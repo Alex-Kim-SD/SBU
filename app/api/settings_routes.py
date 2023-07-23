@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from ..models import ConversationSetting, db
+from ..models import ConversationSetting, Debate, db
 
 conversation_settings = Blueprint('settings', __name__)
 
@@ -56,6 +56,12 @@ def delete_conversation_setting(id):
     setting = ConversationSetting.query.get(id)
     if setting is None or setting.user_id != current_user.id:
         return jsonify({"error": "Setting not found"}), 404
+
+    # Delete or update the Debates that reference the ConversationSetting - cv - don't like doing it this way, but this is the easiest fix for now.
+    debates = Debate.query.filter_by(conversation_setting_id=id).all()
+    for debate in debates:
+        db.session.delete(debate)
+
     db.session.delete(setting)
     db.session.commit()
     return jsonify({"message": "Setting has been deleted"}), 200
