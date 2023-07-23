@@ -19,6 +19,7 @@ const ChallengePage = () => {
   const [topic, setTopic] = useState('');
   const [loading, setLoading] = useState(false);
   const [debate, setDebate] = useState(null);
+  const [errors, setErrors] = useState([]); // error state
 
 
   // Redux store data
@@ -61,35 +62,56 @@ const ChallengePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrors([]); // Reset the error messages before validating
+    let validationErrors = [];
 
-    if (botId1 && botId2 && convSettingsId && maxMessages && topic) {
-      setLoading(true);
+    if (!botId1 || !botId2 || !convSettingsId || !maxMessages || !topic) {
+      validationErrors.push('All fields are required.');
+    }
 
-      console.log(currentUserId);
-      const newConversation = await dispatch(
-        createConversation({
-          bot_id_1: botId1,
-          bot_id_2: botId2,
-          conv_settings_id: convSettingsId,
-          max_messages: parseInt(maxMessages),
-          topic,
-          owner_id: parseInt(currentUserId),
-        })
-      );
+    if (parseInt(maxMessages) > 16) {
+      validationErrors.push('Max messages should not be more than 16.');
+    }
 
-      setLoading(false);
+    if (topic.length > 30) {
+      validationErrors.push('Topic length should not be more than 30 characters.');
+    }
 
-      if (newConversation.payload && newConversation.payload.debate.id) {
-        setDebate(newConversation.payload.debate.id);
-      }
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return; // If there are validation errors, stop the form from submitting.
+    }
+
+    setLoading(true);
+    console.log(currentUserId);
+    const newConversation = await dispatch(
+      createConversation({
+        bot_id_1: botId1,
+        bot_id_2: botId2,
+        conv_settings_id: convSettingsId,
+        max_messages: parseInt(maxMessages),
+        topic,
+        owner_id: parseInt(currentUserId),
+      })
+    );
+    setLoading(false);
+
+    if (newConversation.payload && newConversation.payload.debate.id) {
+      setDebate(newConversation.payload.debate.id);
     }
   };
-
 
   return (
     <div className="challenge-page">
       {loading && <LoadingSpinner />}
       <h1 className="page-heading">Create Conversation</h1>
+      {errors.length > 0 && (
+        <div className="error-messages">
+          {errors.map((error, idx) => (
+            <p key={idx}>{error}</p>
+          ))}
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="form">
         <div className="form-group">
           <label htmlFor="bot1">Bot 1:</label>

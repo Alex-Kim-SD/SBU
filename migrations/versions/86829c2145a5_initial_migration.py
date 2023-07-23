@@ -1,8 +1,8 @@
 """Initial migration
 
-Revision ID: 2ff00bc9dc41
+Revision ID: 86829c2145a5
 Revises:
-Create Date: 2023-07-22 19:44:15.471084
+Create Date: 2023-07-23 01:17:15.429943
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '2ff00bc9dc41'
+revision = '86829c2145a5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,7 +38,7 @@ def upgrade():
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('settings', sa.Text(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
@@ -49,7 +49,7 @@ def upgrade():
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('setting_details', sa.Text(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
@@ -65,10 +65,10 @@ def upgrade():
     sa.Column('topic', sa.String(length=255), nullable=True),
     sa.Column('result', sa.String(length=255), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['conversation_setting_id'], ['conversation_settings.id'], ),
+    sa.ForeignKeyConstraint(['conversation_setting_id'], ['conversation_settings.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['initiator_bot_id'], ['bots.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['opponent_bot_id'], ['bots.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
@@ -83,8 +83,8 @@ def upgrade():
     sa.Column('index', sa.Integer(), nullable=False),
     sa.Column('role', sa.String(length=20), nullable=False),
     sa.Column('time', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['bot_id'], ['bots.id'], ),
-    sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ),
+    sa.ForeignKeyConstraint(['bot_id'], ['bots.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
@@ -97,10 +97,9 @@ def upgrade():
     sa.Column('message', sa.Text(), nullable=True),
     sa.Column('time', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['bot_id'], ['bots.id'], ondelete='CASCADE'),
-    sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ),
+    sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE transcripts SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###

@@ -30,8 +30,8 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    bots = relationship('Bot', backref='user')
-    conversation_settings = relationship('ConversationSetting', backref='user')
+    bots = relationship('Bot', backref='user', cascade="all, delete-orphan")
+    conversation_settings = relationship('ConversationSetting', backref='user', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -49,10 +49,10 @@ class Bot(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
+    user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id', ondelete="CASCADE"), nullable=False)
     settings = db.Column(db.Text)
 
-    transcripts = relationship('Transcript', backref='bot')
+    transcripts = relationship('Transcript', backref='bot', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -71,10 +71,10 @@ class ConversationSetting(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
+    user_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id', ondelete="CASCADE"), nullable=False)
     setting_details = db.Column(db.Text)
 
-    debates = relationship('Debate', backref='conversation_setting')
+    debates = relationship('Debate', backref='conversation_setting', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -92,16 +92,16 @@ class Debate(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    conversation_setting_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("conversation_settings")}.id'), nullable=False)
+    conversation_setting_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("conversation_settings")}.id', ondelete="CASCADE"), nullable=False)
     initiator_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     opponent_bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     start_time = db.Column(DateTime)
     end_time = db.Column(DateTime)
     topic = db.Column(db.String(255))
     result = db.Column(db.String(255))
-    owner_id = Column(Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id'), nullable=False)
+    owner_id = Column(Integer, ForeignKey(f'{add_prefix_for_prod("users")}.id', ondelete="CASCADE"), nullable=False)
 
-    transcripts = relationship('Transcript', backref='debate')
+    transcripts = relationship('Transcript', backref='debate', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -124,7 +124,7 @@ class Transcript(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
+    debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id', ondelete="CASCADE"), nullable=False)
     bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     message = db.Column(Text)
     time = db.Column(DateTime)
@@ -147,8 +147,8 @@ class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id'), nullable=False)
-    bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id'), nullable=False)
+    debate_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("debates")}.id', ondelete="CASCADE"), nullable=False)
+    bot_id = db.Column(db.Integer, ForeignKey(f'{add_prefix_for_prod("bots")}.id', ondelete="CASCADE"), nullable=False)
     content = db.Column(Text)
     index = db.Column(db.Integer, nullable=False)
     role = db.Column(db.String(20), nullable=False)
