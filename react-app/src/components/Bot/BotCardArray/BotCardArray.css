@@ -3,9 +3,10 @@
     height: 250px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px; /* Add some spacing between cards */
     overflow-y: auto; /* Enable vertical scrolling when content overflows */
-    border: 1px solid #ccc; /* Add a border to the bot card list */
+    border: 3px solid #ccc; /* Add a border to the bot card list */
     border-radius: 8px;
     padding: 8px; /* Add some padding to the bot card list */
     scrollbar-width: thin; /* Set the width of the scrollbar */
