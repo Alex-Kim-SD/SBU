@@ -41,7 +41,6 @@ function App() {
           {!isLoginPage && !isSignupPage && <SideNavBar />}
 
           <Switch>
-
             <Route path="/login"> <LoginFormPage /> </Route>
 
             <Route path="/signup"> <SignupFormPage /> </Route>
@@ -59,8 +58,8 @@ function App() {
 
             <Route exact path="/debates"> <DebatePage/> </Route>
             <Route exact path="/debates/:debateId"> <DebateDetailPage/> </Route>
-
           </Switch>
+          
         </div>
       )}
     </>

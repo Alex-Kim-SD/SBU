@@ -67,11 +67,13 @@
 
 .delete-selected-bot-button,
 .edit-selected-bot-button {
+
+  border-radius: 30%;
   border: none;
   font-family: Sarpanch;
-  width: 150px;
+  width: 100px;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
   box-sizing: border-box;
 }
