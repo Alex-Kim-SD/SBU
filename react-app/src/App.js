@@ -57,7 +57,7 @@ function App() {
                 <Switch>
                   <Route path="/home"> <HomePage /> </Route>
 
-                  <Route path="/challenge"><ChallengePage /> </Route>
+                  {/* <Route path="/challenge"><ChallengePage /> </Route> */}
 
                   <Route exact path="/bots"> <BotDashboard /> </Route>
                   <Route exact path="/other-bots"> <OtherBotsPage /> </Route>
