@@ -1,0 +1,14 @@
+.conv-dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    max-width: 860px;
+    box-sizing: border-box;
+  }
+
+  .conv-dashboard-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }

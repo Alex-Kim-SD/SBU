@@ -3,9 +3,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchSettings } from '../../../store/convSettingsSlice'; // Fixed import statement
+import { fetchSettings } from '../../../store/convSettingsSlice';
 import ConvCardArray from '../ConvCardArray/ConvCardArray';
 import CreateConvButton from '../CreateConvModal/CreateConvButton';
+import './ConvDashboard.css';
 
 function ConvDashboard() {
   const { convId } = useParams();
@@ -27,8 +28,8 @@ function ConvDashboard() {
   }
 
   return (
-    <div>
-      <h1>ConvDashboard</h1>
+    <div className="conv-dashboard">
+      <h1 className="conv-dashboard-title">Conversations</h1>
       <CreateConvButton />
       <ConvCardArray userId={currentUser.id} />
     </div>

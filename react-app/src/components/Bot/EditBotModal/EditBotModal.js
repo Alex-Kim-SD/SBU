@@ -34,9 +34,6 @@ function EditBotModal({ botId }) {
       settings,
     };
 
-    // console.log('\n','Updated Info',updatedBot)
-    // console.log('\n','BotId',botId)
-
     dispatch(editBot({ botId, bot: updatedBot }))
       .then((res) => {
         closeModal();
@@ -55,11 +52,21 @@ function EditBotModal({ botId }) {
       <form onSubmit={updateBot}>
         <label>
           Bot Name:
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+          <input
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            maxLength="25"
+            required
+          />
         </label>
         <label>
           Bot Settings:
-          <textarea value={settings} onChange={e => setSettings(e.target.value)} />
+          <textarea
+            value={settings}
+            onChange={e => setSettings(e.target.value)}
+            maxLength="400"
+          />
         </label>
         <div className="button-group">
           <button type="submit" className="save-button">Save Changes</button>
@@ -68,6 +75,7 @@ function EditBotModal({ botId }) {
       </form>
     </div>
   );
+
 }
 
 export default EditBotModal;

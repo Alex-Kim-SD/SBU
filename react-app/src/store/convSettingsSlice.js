@@ -65,10 +65,12 @@ export const editSetting = (settingId, setting) => async (dispatch) => {
     });
     const data = await res.json();
     dispatch(updateSetting(data));
+    return data;
   } catch (err) {
     console.error(err);
   }
 };
+
 
 export const deleteSetting = (settingId) => async (dispatch) => {
   try {

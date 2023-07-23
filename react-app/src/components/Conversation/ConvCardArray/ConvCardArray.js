@@ -20,7 +20,7 @@ function ConvCardArray({ userId }) {
   });
 
   if (!convs.length) {
-    return <div>No conversations found</div>;
+    return <div className="no-convs-message">No conversations found</div>;
   }
 
   return (

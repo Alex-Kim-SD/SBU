@@ -51,7 +51,9 @@
   }
 
   .create-conv-modal-button {
+    width: 220px;
     padding: 8px 16px;
+    margin-bottom: 20px;
     font-size: 16px;
     background-color: #1890ff;
     color: #000;

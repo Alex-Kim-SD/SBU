@@ -17,21 +17,32 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]); 
+    let validationErrors = [];
 
     const emailValidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailValidation.test(email)) {
-      setErrors(prevErrors => [...prevErrors, "Please enter a valid email address."]);
-      return;
+      validationErrors.push("Please enter a valid email address.");
     }
 
-    if (password === confirmPassword) {
+    if (username.length < 6) {
+      validationErrors.push("Username must be at least 6 characters long.");
+    }
+
+    if (password.length < 8) {
+      validationErrors.push("Password must be at least 8 characters long.");
+    }
+
+    if (password !== confirmPassword) {
+      validationErrors.push("Confirm Password field must be the same as the Password field");
+    }
+
+    setErrors(validationErrors);
+
+    if (validationErrors.length === 0) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
-        setErrors(data)
+        setErrors(data);
       }
-    } else {
-      setErrors(['Confirm Password field must be the same as the Password field']);
     }
   };
 
@@ -39,10 +50,10 @@ function SignupFormPage() {
     <div className="signup-container">
       <h1 className="signup-title">Sign Up</h1>
       <form className="signup-form" onSubmit={handleSubmit}>
-        <ul>
+        <ul className="error-list">
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label>
+        <label className="form-label">
           Email
           <input
             className="signup-input"
@@ -52,7 +63,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
+        <label className="form-label">
           Username
           <input
             className="signup-input"
@@ -62,7 +73,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
+        <label className="form-label">
           Password
           <input
             className="signup-input"
@@ -72,7 +83,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label>
+        <label className="form-label">
           Confirm Password
           <input
             className="signup-input"

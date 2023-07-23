@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModal } from '../../../context/Modal';
 import ConvSettingsModal from './EditConvModal';
+import './EditConvButton.css';
 
 function EditConvButton({ settingId }) {
   const { setModalContent, setOnModalClose } = useModal();
@@ -13,8 +14,8 @@ function EditConvButton({ settingId }) {
   };
 
   return (
-    <button onClick={handleClick}>
-      Open EditConvModal
+    <button className="edit-conv-button" onClick={handleClick}>
+      Open Edit Conversation Modal
     </button>
   );
 }

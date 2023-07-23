@@ -1,4 +1,14 @@
 .conv-card-list {
-    height: 500px;
-    overflow: scroll;
-}
+    display: grid;
+    gap: 20px;
+    justify-items: left;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    overflow-y: scroll;
+  }
+
+  .no-convs-message {
+    font-size: 1.2em;
+    color: #999;
+  }

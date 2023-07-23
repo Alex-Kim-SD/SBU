@@ -30,18 +30,21 @@ function ConvSettingsModal({ settingId }) {
     event.preventDefault();
 
     const updatedSetting = {
-      title: settingName, 
+      title: settingName,
       setting_details: settingDetails,
     };
 
     dispatch(editSetting(settingId, updatedSetting))
-      .then(() => {
+      .then((updatedSetting) => {
+        setSettingName(updatedSetting.title);
+        setSettingDetails(updatedSetting.setting_details);
         closeModal();
       })
       .catch((err) => {
         setErrors(err);
       });
   };
+
 
   return (
     <div className="conv-settings-modal">
@@ -52,11 +55,21 @@ function ConvSettingsModal({ settingId }) {
       <form onSubmit={updateSetting}>
         <label>
           Setting Name:
-          <input type="text" value={settingName} onChange={e => setSettingName(e.target.value)} required />
+          <input
+            type="text"
+            value={settingName}
+            onChange={e => setSettingName(e.target.value)}
+            maxLength="25"
+            required
+          />
         </label>
         <label>
           Setting Details:
-          <textarea value={settingDetails} onChange={e => setSettingDetails(e.target.value)} />
+          <textarea
+            value={settingDetails}
+            onChange={e => setSettingDetails(e.target.value)}
+            maxLength="400"
+          />
         </label>
         <div className="button-group">
           <button type="submit" className="save-button">Save Changes</button>

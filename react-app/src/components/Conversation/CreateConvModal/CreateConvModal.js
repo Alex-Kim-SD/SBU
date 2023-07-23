@@ -49,11 +49,21 @@ function CreateConvModal() {
       <form onSubmit={createConversationSetting}>
         <label>
           Title:
-          <input type="text" value={title} onChange={e => setTitle(e.target.value)} required />
+          <input
+            type="text"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            maxLength="25"
+            required
+          />
         </label>
         <label>
           Setting Details:
-          <textarea value={settingDetails} onChange={e => setSettingDetails(e.target.value)} />
+          <textarea
+            value={settingDetails}
+            onChange={e => setSettingDetails(e.target.value)}
+            maxLength="400"
+          />
         </label>
         <div className="button-group">
           <button type="submit" className="create-button">Create Conversation Setting</button>
@@ -62,6 +72,7 @@ function CreateConvModal() {
       </form>
     </div>
   );
+
 }
 
 export default CreateConvModal;
