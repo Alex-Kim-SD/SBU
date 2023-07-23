@@ -53,15 +53,20 @@ def update_conversation_setting(id):
 @conversation_settings.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_conversation_setting(id):
-    setting = ConversationSetting.query.get(id)
-    if setting is None or setting.user_id != current_user.id:
-        return jsonify({"error": "Setting not found"}), 404
+    try:
+        setting = ConversationSetting.query.get(id)
+        if setting is None or setting.user_id != current_user.id:
+            return jsonify({"error": "Setting not found"}), 404
 
-    # Delete or update the Debates that reference the ConversationSetting - cv - don't like doing it this way, but this is the easiest fix for now.
-    debates = Debate.query.filter_by(conversation_setting_id=id).all()
-    for debate in debates:
-        db.session.delete(debate)
+        # Delete or update the Debates that reference the ConversationSetting - cv - don't like doing it this way, but this is the easiest fix for now.
+        debates = Debate.query.filter_by(conversation_setting_id=id).all()
+        for debate in debates:
+            db.session.delete(debate)
 
-    db.session.delete(setting)
-    db.session.commit()
-    return jsonify({"message": "Setting has been deleted"}), 200
+        db.session.delete(setting)
+        db.session.commit()
+        return jsonify({"message": "Setting has been deleted"}), 200
+    except Exception as e:
+        # Log the error 
+        print(f"Error deleting conversation setting: {e}")
+        return jsonify({"error": "Internal server error"}), 500
