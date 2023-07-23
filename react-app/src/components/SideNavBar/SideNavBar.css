@@ -2,7 +2,6 @@
     width: 380px;
     height: 550px;
     flex-shrink: 0;
-    /* background: #50BCE5; */
     opacity: 80%;
     display: flex;
     justify-content: center;
