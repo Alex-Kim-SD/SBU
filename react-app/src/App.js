@@ -24,7 +24,7 @@ import DebatePage from './components/Debate/DebatePage/DebatePage';
 
 import LandingPage from './components/LandingPage/LandingPage';
 
-import Background from './components/Background/background';
+// import Background from './components/Background/background';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <>
-    {location.pathname !== "/" && <Background />}
+    {/* {location.pathname !== "/" && <Background />} */}
     {isLoaded && (
       <>
         {!user ?
