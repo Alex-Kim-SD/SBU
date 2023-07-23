@@ -39,6 +39,8 @@
 }
 
 .selected-bot-name {
+  display: flex;
+  justify-content: left;
   color: #FFF;
   text-align: center;
   font-family: Sarpanch;

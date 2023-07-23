@@ -21,6 +21,8 @@ import ChallengePage from './components/Challenge/ChallengePage/ChallengePage';
 import DebateDetailPage from './components/Debate/DebateDetailPage/DebateDetailPage';
 import DebatePage from './components/Debate/DebatePage/DebatePage';
 
+import Background from './components/Background/background';
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,6 +37,7 @@ function App() {
 
   return (
     <>
+    <Background />
       {!isLoginPage && !isSignupPage && <Navigation isLoaded={isLoaded} />}
       {isLoaded && (
         <div className="app-content">

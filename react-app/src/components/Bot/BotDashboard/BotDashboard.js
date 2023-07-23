@@ -27,6 +27,7 @@ function BotDashboard() {
   }
 
   return (
+    <div className='bot-dash-z-index'>
     <div className='bot-dash-container'>
       <div className='bot-detail-title-container'>
         <p className='bot-detail-title'>--| Choose a bot to view, edit, or delete.</p>
@@ -34,6 +35,7 @@ function BotDashboard() {
       <BotDetailPage botId={selectedBot} />
       <BotCardArray userId={currentUser.id} />
       <CreateBotButton />
+    </div>
     </div>
   );
 }

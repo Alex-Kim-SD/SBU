@@ -3,6 +3,7 @@
     height: 720px;
     flex-shrink: 0;
     background: #50BCE5;
+    opacity: 80%;
     display: flex;
     justify-content: center;
 }

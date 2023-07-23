@@ -53,7 +53,7 @@ function BotDetailPage({ botId }) {
       <div className='selected-bot-info'>
         <div className='selected-bot-name-settings-container'>
         <h2 className='selected-bot-name'>{bot.name}</h2>
-        <p className='selected-bot-settings'>{truncate(bot.settings, 70)}</p>
+        <p className='selected-bot-settings'>{truncate(bot.settings, 60)}</p>
         </div>
         <div className='selected-bot-button-container'>
           <button className='edit-selected-bot-button' onClick={handleEditClick}>Edit</button>
