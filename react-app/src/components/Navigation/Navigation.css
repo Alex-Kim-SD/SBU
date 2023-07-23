@@ -9,12 +9,13 @@
   max-width: 1240px;
   width: 100%;
   height: 140px;
+  border-radius: 100.5px;
   padding: 0 50px;
   margin: 0 auto;
-  background: #2B688A;
-  opacity: 80%;
+  background: rgba(43, 104, 138, 0.4);
   box-sizing: border-box;
 }
+
 
 .navigation-bar img {
   max-height: 100%;

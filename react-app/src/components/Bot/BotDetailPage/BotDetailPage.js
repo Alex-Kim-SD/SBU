@@ -9,10 +9,15 @@ import './BotDetailPage.css';
 
 
 function truncate(str, num) {
-  if (str.length > num) {
-    return str.slice(0, num) + "...";
-  } else {
+  if (str.length <= num) {
     return str;
+  }
+  const truncatedStr = str.slice(0, num);
+  const lastSpaceIndex = truncatedStr.lastIndexOf(' ');
+  if (lastSpaceIndex === -1) {
+    return truncatedStr + "...";
+  } else {
+    return truncatedStr.slice(0, lastSpaceIndex) + "...";
   }
 }
 
@@ -29,8 +34,9 @@ function BotDetailPage({ botId }) {
   const history = useHistory();
 
   if (!botId || !bot) {
-    return <div>Select a bot to view details</div>;
+    return <div className='no-bot-selected-text'>Select a bot to view details</div>;
   }
+
   const handleEditClick = () => {
     setModalContent(<EditBotModal botId={botId} />);
     setOnModalClose(() => {
@@ -53,7 +59,7 @@ function BotDetailPage({ botId }) {
       <div className='selected-bot-info'>
         <div className='selected-bot-name-settings-container'>
         <h2 className='selected-bot-name'>{bot.name}</h2>
-        <p className='selected-bot-settings'>{truncate(bot.settings, 60)}</p>
+        <p className='selected-bot-settings'>{truncate(bot.settings, 200)}</p>
         </div>
         <div className='selected-bot-button-container'>
           <button className='edit-selected-bot-button' onClick={handleEditClick}>Edit</button>

@@ -1,3 +1,13 @@
+.no-bot-selected-text {
+  color: #000;
+  text-align: center;
+  font-family: Sarpanch;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .selected-bot-detail-container {
   display: flex;
   align-items: center;
@@ -33,7 +43,6 @@
 .selected-bot-info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -66,7 +75,7 @@
 
 .delete-selected-bot-button,
 .edit-selected-bot-button {
-margin: 15px;
+  margin: 15px;
   border-radius: 30%;
   border: none;
   font-family: Sarpanch;

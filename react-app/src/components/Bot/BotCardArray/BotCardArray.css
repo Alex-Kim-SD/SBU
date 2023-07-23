@@ -22,8 +22,8 @@
   }
 
   .bot-card {
-    width: 120px;
-    height: 150px;
+    width: 20%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -19,13 +19,13 @@ const SideNavBar = () => {
                     <span className="main-list-item" >.config</span>
                     <ul className={`dropdown-list ${isOpen ? 'show' : ''}`}>
                         <li className="dropdown-item">
-                            <NavLink exact to="/bots">Bots-Primary</NavLink>
+                            <NavLink exact to="/bots">Bot-Collection</NavLink>
                         </li>
                         <li className="dropdown-item">
-                            <NavLink exact to="/settings">Conversations</NavLink>
+                            <NavLink exact to="/settings">Conversation-Settings</NavLink>
                         </li>
                         <li className="dropdown-item">
-                            <NavLink exact to="/other-bots">Bots-Opponent</NavLink>
+                            <NavLink exact to="/other-bots">Other-Bots</NavLink>
                         </li>
                     </ul>
                 </li>

@@ -1,8 +1,8 @@
-"""empty message
+"""Initial migration
 
-Revision ID: 3d4041dacebd
+Revision ID: 2ff00bc9dc41
 Revises:
-Create Date: 2023-07-19 15:34:36.863674
+Create Date: 2023-07-22 19:44:15.471084
 
 """
 from alembic import op
@@ -11,8 +11,9 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '3d4041dacebd'
+revision = '2ff00bc9dc41'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -52,7 +53,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE conversation_settings SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE conversation_setings SET SCHEMA {SCHEMA};")
 
     op.create_table('debates',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -99,9 +100,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['debate_id'], ['debates.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE transcripts SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
 
 
