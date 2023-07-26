@@ -64,7 +64,7 @@ def create_conversation():
     user_request = {
         "role": "user",
         "content": f"Emulate a conversation happening under these circumstances: {conv_settings.setting_details} on: '{new_debate.topic}' between '{bot_1.name}' who is described as {bot_1.settings} and '{bot_2.name}' who is described as {bot_2.settings}. "
-        "Limit each person's response to 50 words or less. Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code: chat_content = chat['choices'][0]['message']['content'] chat_json = json.loads(chat_content) messages = chat_json['messages']"
+        "Limit each person's response to 100 words or less. Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code: chat_content = chat['choices'][0]['message']['content'] chat_json = json.loads(chat_content) messages = chat_json['messages']"
     }
 
     print('\n','User Request',user_request,'\n')
