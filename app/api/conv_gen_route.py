@@ -57,15 +57,15 @@ def create_conversation():
     # Initialize the conversation
     system_def = {
         "role": "system",
-        "content": "You are a silent assistant who specializes in emulating speech between two people."
+        "content": "You are a silent assistant who specializes in emulating speech between two characters based on provided settings."
         f"There should be exactly {max_messages} total messages exchanged."
     }
     # print('\n','System Def',system_def,'\n')
 
     user_request = {
         "role": "user",
-        "content": f"Emulate a conversation happening under these circumstances: {conv_settings.setting_details} on: '{new_debate.topic}' between '{bot_1.name}' who is described as {bot_1.settings} and '{bot_2.name}' who is described as {bot_2.settings}. "
-        "Limit each person's response to 150 words or less. Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. it needs to be parsable by this code: chat_content = chat['choices'][0]['message']['content'] chat_json = json.loads(chat_content) messages = chat_json['messages']"
+        "content": f"Create a conversation happening under these circumstances: {conv_settings.setting_details} on the topic of: '{new_debate.topic}' between '{bot_1.name}' who is described as {bot_1.settings} and '{bot_2.name}' who is described as {bot_2.settings}. "
+        "Limit each person's response to 150 words or less. Provide the conversation in a JSON object titled 'messages' where each new response is a different entry formatted exactly like so: {name: 'name', message:'response', index:'index'}. Format your response precisely so that it is parsable by this code: chat_content = chat['choices'][0]['message']['content'] chat_json = json.loads(chat_content) messages = chat_json['messages']"
     }
 
     # print('\n','User Request',user_request,'\n')
