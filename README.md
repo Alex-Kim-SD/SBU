@@ -1,7 +1,6 @@
-# Jello
+# SBU (Stop Being Unreasonable)
 <div>An App Academy Group Project</div>
-<div></div>
-Welcome to Jello! This web application is a task and project management tool, mimicking the functionality and design of the popular tool Trello. Users can create boards for different projects or aspects of their work or personal life. Within these boards, users can create lists to further categorize tasks. Individual tasks, represented by cards, can be added to these lists. These cards can be moved between listss, making this a flexible and intuitive tool for managing tasks and tracking project progress. Whether you're coordinating a large team project, planning your next big event, or just making a shopping list, our Jello is designed to keep you organized and in control.
+Welcome to SBU! This web application is based around the idea of AI Dialogue generation. Have you ever wondered what a debate between Ironman and Voldemort would look like? How about Socrates and Nietzsche debating the validity of the pursuit of happiness? Create and manage AI personalities and engage them in dialogue with other AI personalities on any topics of your choosing!
 
 ## Live Link
 
