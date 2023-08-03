@@ -1,5 +1,5 @@
 # SBU (Stop Being Unreasonable)
-<div>An App Academy Group Project</div>
+
 Welcome to SBU! This web application is based around the idea of AI Dialogue generation. Have you ever wondered what a debate between Ironman and Voldemort would look like? How about Socrates and Nietzsche debating the validity of the pursuit of happiness? Create and manage AI personalities and engage them in dialogue with other AI personalities on any topics of your choosing!
 
 ## Live Link
