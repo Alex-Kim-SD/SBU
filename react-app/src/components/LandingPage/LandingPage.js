@@ -9,12 +9,14 @@ function LandingPage() {
 
   if (sessionUser) return <Redirect to="/home" />;
 
+
   return (
     <div className="landing-page-container">
       <div className="landing-page-header-box">
         <h1 className="landing-page-title">Welcome to SBU</h1>
         <p className="landing-page-subtitle">Generate AI Conversations, Stop Being Unreasonable</p>
         <div className="landing-page-buttons">
+          <div className="demo-login"> Demo-Login </div>
           <Link to="/login" className="landing-page-btn login-btn">Login</Link>
           <Link to="/signup" className="landing-page-btn signup-btn">Sign Up</Link>
         </div>
