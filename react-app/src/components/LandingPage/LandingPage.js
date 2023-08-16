@@ -1,14 +1,26 @@
 // ./components/LandingPage/LandingPage.js
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../store/session";
 import { Redirect, Link } from "react-router-dom";
 import "./LandingPage.css";
 
 function LandingPage() {
-  const sessionUser = useSelector((state) => state.session.user);
 
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
   if (sessionUser) return <Redirect to="/home" />;
 
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  };
 
   return (
     <div className="landing-page-container">
@@ -16,7 +28,7 @@ function LandingPage() {
         <h1 className="landing-page-title">Welcome to SBU</h1>
         <p className="landing-page-subtitle">Generate AI Conversations, Stop Being Unreasonable</p>
         <div className="landing-page-buttons">
-          <div className="demo-login"> Demo-Login </div>
+          <button className="landing-page-btn demo-login-btn" onClick={handleDemoLogin}>Demo-Login </button>
           <Link to="/login" className="landing-page-btn login-btn">Login</Link>
           <Link to="/signup" className="landing-page-btn signup-btn">Sign Up</Link>
         </div>
