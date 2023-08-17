@@ -29,9 +29,9 @@ function DebatePage() {
   <div className="debate-page-container">
     <h1 className="debate-page-title">Debates</h1>
     <h2>Your Debates</h2>
-    <DebateCardArray debates={yourDebates} />
+    <DebateCardArray debates={yourDebates} userId={currentUser.id}  />
     <h2>Other Debates</h2>
-    <DebateCardArray debates={otherDebates} />
+    <DebateCardArray debates={otherDebates} userId={currentUser.id}  />
   </div>
 );
 

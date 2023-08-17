@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import DebateCard from '../DebateCard/DebateCard';
 import './DebateCardArray.css'
 
-function DebateCardArray({ debates }) {
+function DebateCardArray({ debates, userId }) {
   if (!debates.length) {
     return <div>No debates found</div>;
   }
@@ -10,7 +10,7 @@ function DebateCardArray({ debates }) {
   return (
     <div className="card-list-container">
       {debates.map((debate) => (
-        <DebateCard key={debate.id} debate={debate} />
+        <DebateCard key={debate.id} debate={debate} userId={userId} />
       ))}
     </div>
   );

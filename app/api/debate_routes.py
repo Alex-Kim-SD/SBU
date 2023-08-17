@@ -18,6 +18,7 @@ def get_debate(debate_id):
 
     return jsonify(debate_data), 200
 
+# FETCH ALL DEBATES
 @debate_routes.route('', methods=['GET'])
 @login_required
 def get_all_debates():
@@ -40,3 +41,16 @@ def get_all_debates():
         debate_list.append(debate_dict)
 
     return jsonify(debate_list), 200
+
+# DELETE DEBATE
+@debate_routes.route('/<int:debate_id>', methods=['DELETE'])
+@login_required
+def delete_debate(debate_id):
+    debate = Debate.query.get(debate_id)
+    if not debate:
+        return jsonify({'error': 'Debate not found'}), 404
+    if debate.owner_id != current_user.id:
+        return jsonify({'error': 'Unauthorized action'}), 403
+    db.session.delete(debate)
+    db.session.commit()
+    return jsonify({'message': 'Debate deleted successfully'}), 200

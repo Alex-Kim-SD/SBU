@@ -24,6 +24,7 @@ const initialState = {
   isLoading: false,
 };
 
+// fetch thunk
 export const fetchAllDebates = createAsyncThunk('debate/fetchAllDebates', async (userId) => {
   try {
     const response = await fetch('/api/debates');
@@ -32,6 +33,21 @@ export const fetchAllDebates = createAsyncThunk('debate/fetchAllDebates', async 
     }
     const data = await response.json();
     return { debates: data, userId };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// delete thunk
+export const deleteDebate = createAsyncThunk('debate/deleteDebate', async (debateId) => {
+  try {
+    const response = await fetch(`/api/debates/${debateId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete debate');
+    }
+    return debateId; // return the deleted debateId
   } catch (error) {
     throw new Error(error.message);
   }
@@ -68,6 +84,21 @@ const debateSlice = createSlice({
         state.otherDebates = debates.filter(debate => debate.owner_id !== userId);
       })
       .addCase(fetchAllDebates.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      })
+      //delete cases:
+      .addCase(deleteDebate.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteDebate.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const debateId = action.payload;
+        state.yourDebates = state.yourDebates.filter(debate => debate.id !== debateId);
+        state.otherDebates = state.otherDebates.filter(debate => debate.id !== debateId);
+      })
+      .addCase(deleteDebate.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });

@@ -7,6 +7,8 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .debate-card:hover {
@@ -37,4 +39,29 @@
   color: #666;
   margin-bottom: 8px;
   text-align: center;
+}
+
+/* Delete Button for Debate Card */
+.debate-delete-button-container {
+  display: flex;
+  justify-content: right;
+}
+.debate-card button {
+  display: block;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff4b5c; /* a reddish color suitable for delete action */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.debate-card button:hover {
+  background-color: #e43f4f; /* slightly darkened for hover effect */
+}
+
+.debate-card button:focus {
+  box-shadow: 0 0 0 2px rgba(255, 75, 92, 0.4); /* adding focus ring for accessibility */
 }
