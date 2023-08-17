@@ -1,0 +1,52 @@
+.message-list {
+  padding: 20px;
+}
+
+.message-list-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.message-list-container {
+  list-style: none;
+  padding: 0;
+}
+
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  padding: 12px;
+  background-color: #f9f9f9; /* Default background */
+  transition: background-color 0.3s;
+}
+
+.message-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* If role/type is 'initiator' and 'opponent', apply these styles */
+.message-item.initiator {
+  background-color: #e6f4ff; /* Light blue for initiator */
+}
+
+.message-item.opponent {
+  background-color: #ffebf0; /* Light pink for opponent */
+}
+
+.message-name {
+  font-weight: bold;
+  color: #444;
+  margin-right: 16px;
+}
+
+.message-content {
+  color: #555;
+  max-width: 80%; /* Ensuring the message doesn't stretch too much */
+  word-wrap: break-word; /* If a single word is too long, break it to the next line */
+}

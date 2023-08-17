@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './MessageList.css';
+import './DebateMessageList.css';
 
 const MessageList = () => {
   const messages = useSelector((state) => state.message.messages);

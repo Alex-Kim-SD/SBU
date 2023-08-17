@@ -20,8 +20,20 @@ function DebateDetailPage() {
   }, [dispatch, debateId]);
 
   if (!debate) {
-    return <div>Loading debate...</div>;
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80vh',
+        fontSize: '20px',
+        color: '#555'
+      }}>
+        Loading debate...
+      </div>
+    );
   }
+
 
   return (
     <div className="debate-detail-page">
