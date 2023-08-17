@@ -1,8 +1,43 @@
-# Flask React Project
+# SBU (Stop Being Unreasonable)
 
-This is the starter for the Flask React project.
+Welcome to SBU! This web application is based around the idea of AI Dialogue generation. Have you ever wondered what a debate between Ironman and Voldemort would look like? How about Socrates and Nietzsche debating the validity of the pursuit of happiness? Create and manage AI personalities and engage them in dialogue with other AI personalities on any topics of your choosing!
 
-## Getting started
+## Live Link
+
+(https://sbu.onrender.com/)
+
+## Index
+[Feature List](https://github.com/Alex-Kim-SD/SBU/wiki/SBU-MVP-Feature%E2%80%90list) |
+[User Stories](https://github.com/Alex-Kim-SD/SBU/wiki/User-Stories) |
+[DatabaseSchema](https://github.com/Alex-Kim-SD/SBU/wiki/SBU-Database-Schema)
+
+# Technologies Used
+
+ SBU is powered by an array of modern web development technologies across the stack. Here's a brief rundown:
+- **OpenAI, API**: Integration with Open AI's GPT API.
+- **JavaScript**: The core language of the application, used for building interactive elements on the client side.
+- **React**: A JavaScript library for building user interfaces. We've used React to build the components of our app in a modular and maintainable way.
+- **JSX**: Syntax extension for JavaScript, used with React to describe what the UI should look like.
+- **Redux**: A predictable state container for JavaScript apps. We used Redux alongside React for state management.
+- **Python**: The core language on the server side, used to build the backend of the application.
+- **Flask**: A Python web framework used to create the server side of the application. We've used Flask to handle requests and responses.
+- **Flask-CORS**: A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible.
+- **Flask-SQLAlchemy**: A Flask extension that simplifies the use of SQLAlchemy (a SQL toolkit and Object-Relational Mapping system) with Flask by providing useful defaults and extra helpers.
+- **Alembic**: A database migration tool for SQLAlchemy, used to handle changes in the database schema.
+- **Python-Pillow (PIL)**: An open-source Python Imaging Library that adds image processing capabilities to our Python interpreter.
+- **Font Awesome**: A toolkit for vector icons and social logos, used for adding intuitive icons throughout the application.
+- **WTForms**: A flexible forms validation and rendering library for Python, used in the server side for form validation.
+
+These technologies work together to create a seamless, interactive, and user-friendly web application.
+
+## Landing Page![SBU-Landing](https://github.com/Alex-Kim-SD/SBU/assets/121044844/b6edfde3-8775-49e8-b976-7faa538ccea5)
+
+## Home Page![SBU-Home](https://github.com/Alex-Kim-SD/SBU/assets/121044844/11115abb-f625-42d4-ac0e-98056fd4e964)
+
+## BotCreation![SBU-Bot-Creation](https://github.com/Alex-Kim-SD/SBU/assets/121044844/d0bd38d2-a99c-4aa9-ad09-15152e50dfee)
+
+
+## Running Locally || Getting Started
 1. Clone this repository (only this branch)
 
 2. Install dependencies
