@@ -18,22 +18,25 @@ export const fetchDebate = createAsyncThunk('debate/fetchDebate', async (debateI
 // Initial State
 const initialState = {
   debate: null,
+  yourDebates: [],
+  otherDebates: [],
   error: null,
   isLoading: false,
 };
 
-export const fetchAllDebates = createAsyncThunk('debate/fetchAllDebates', async () => {
+export const fetchAllDebates = createAsyncThunk('debate/fetchAllDebates', async (userId) => {
   try {
     const response = await fetch('/api/debates');
     if (!response.ok) {
       throw new Error('Failed to fetch debates');
     }
     const data = await response.json();
-    return data;
+    return { debates: data, userId };
   } catch (error) {
     throw new Error(error.message);
   }
 });
+
 
 // Slice
 const debateSlice = createSlice({
@@ -60,8 +63,9 @@ const debateSlice = createSlice({
       })
       .addCase(fetchAllDebates.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.debate = null;
-        state.debates = action.payload;
+        const { debates, userId } = action.payload;
+        state.yourDebates = debates.filter(debate => debate.owner_id === userId);
+        state.otherDebates = debates.filter(debate => debate.owner_id !== userId);
       })
       .addCase(fetchAllDebates.rejected, (state, action) => {
         state.isLoading = false;

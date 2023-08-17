@@ -10,12 +10,14 @@ function DebatePage() {
   const history = useHistory();
 
   const currentUser = useSelector(state => state.session.user);
+  const yourDebates = useSelector(state => state.debate.yourDebates);
+  const otherDebates = useSelector(state => state.debate.otherDebates);
 
   useEffect(() => {
     if (!currentUser) {
       history.push('/login');
     } else {
-      dispatch(fetchAllDebates());
+      dispatch(fetchAllDebates(currentUser.id));
     }
   }, [dispatch, currentUser, history]);
 
@@ -24,10 +26,13 @@ function DebatePage() {
   }
 
   return (
-    <div className="debate-page-container">
-      <h1 className="debate-page-title">Debates</h1>
-      <DebateCardArray userId={currentUser.id} />
-    </div>
+  <div className="debate-page-container">
+    <h1 className="debate-page-title">Debates</h1>
+    <h2>Your Debates</h2>
+    <DebateCardArray debates={yourDebates} />
+    <h2>Other Debates</h2>
+    <DebateCardArray debates={otherDebates} />
+  </div>
 );
 
 }
