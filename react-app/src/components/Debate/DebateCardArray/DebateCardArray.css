@@ -1,0 +1,6 @@
+.card-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Modern way to add gaps in flex */
+    justify-content: center;
+  }

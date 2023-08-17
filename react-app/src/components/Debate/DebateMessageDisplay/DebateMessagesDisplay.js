@@ -5,7 +5,6 @@ import './MessageList.css';
 const MessageList = () => {
   const messages = useSelector((state) => state.message.messages);
 
-  // Check if messages is not an array
   if (!Array.isArray(messages)) {
     return <div>
      Messages Array is empty

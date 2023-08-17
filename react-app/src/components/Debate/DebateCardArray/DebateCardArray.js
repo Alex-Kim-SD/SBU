@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DebateCard from '../DebateCard/DebateCard';
 import { fetchAllDebates } from '../../../store/debateSlice';
+import './DebateCardArray.css'
 
 function DebateCardArray() {
   const dispatch = useDispatch();
@@ -18,12 +19,13 @@ function DebateCardArray() {
   }
 
   return (
-    <div className="card-list">
+    <div className="card-list-container">
       {debates.map((debate) => (
         <DebateCard key={debate.id} debate={debate} />
       ))}
     </div>
-  );
+);
+
 }
 
 export default DebateCardArray;

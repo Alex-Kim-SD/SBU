@@ -73,8 +73,8 @@ const ChallengePage = () => {
       validationErrors.push('Max messages should not be more than 16.');
     }
 
-    if (topic.length > 30) {
-      validationErrors.push('Topic length should not be more than 30 characters.');
+    if (topic.length > 40) {
+      validationErrors.push('Topic length should not be more than 40 characters.');
     }
 
     if (validationErrors.length > 0) {

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchAllDebates } from '../../../store/debateSlice';
 import DebateCardArray from '../DebateCardArray/DebateCardArray';
+import './DebatePage.css'
 
 function DebatePage() {
   const dispatch = useDispatch();
@@ -23,11 +24,12 @@ function DebatePage() {
   }
 
   return (
-    <div>
-      <h1>Debates</h1>
+    <div className="debate-page-container">
+      <h1 className="debate-page-title">Debates</h1>
       <DebateCardArray userId={currentUser.id} />
     </div>
-  );
+);
+
 }
 
 export default DebatePage;
