@@ -55,7 +55,7 @@ function CreateBotModal() {
             value={name}
             onChange={e => setName(e.target.value)}
             required
-            maxLength={25} // Maximum length of 30 characters
+            maxLength={25} // Maximum length
             placeholder="Enter Bot Name"
           />
         </label>
@@ -64,7 +64,7 @@ function CreateBotModal() {
           <textarea
             value={settings}
             onChange={e => setSettings(e.target.value)}
-            maxLength={400} // Maximum length of 500 characters
+            maxLength={400} // Maximum length
             placeholder="Describe your Bot! Be as specific as possible."
           />
         </label>
