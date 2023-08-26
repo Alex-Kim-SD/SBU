@@ -34,9 +34,9 @@ function LoginFormPage() {
       <h1 className="login-title">Log In</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <ul className="error-list">
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
+          {errors.map((error, idx) => {
+            return <li key={idx}>{error}</li>;  // Return the list item element
+          })}
         </ul>
         <label className="form-label">
           Email
