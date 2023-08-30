@@ -69,8 +69,8 @@ const ChallengePage = () => {
       validationErrors.push('All fields are required.');
     }
 
-    if (parseInt(maxMessages) > 16) {
-      validationErrors.push('Max messages should not be more than 16.');
+    if (parseInt(maxMessages) > 10) {
+      validationErrors.push('Max messages should not be more than 10.');
     }
 
     if (topic.length > 40) {
@@ -113,26 +113,46 @@ const ChallengePage = () => {
         </div>
       )}
       <form onSubmit={handleSubmit} className="form">
+        {/* Bot 1 dropdown */}
         <div className="form-group">
           <label htmlFor="bot1">Bot 1:</label>
           <select id="bot1" value={botId1} onChange={handleBot1Change}>
             <option value="">Select Bot 1</option>
-            {Object.values(userBots).map((bot) => (
-              <option key={bot.id} value={bot.id}>
-                {bot.name}
-              </option>
-            ))}
+            <optgroup label="Your Bots">
+              {Object.values(userBots).map((bot) => (
+                <option key={bot.id} value={bot.id}>
+                  {bot.name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Other Bots">
+              {Object.values(otherBots).map((bot) => (
+                <option key={bot.id} value={bot.id}>
+                  {bot.name}
+                </option>
+              ))}
+            </optgroup>
           </select>
         </div>
+        {/* Bot 2 dropdown */}
         <div className="form-group">
           <label htmlFor="bot2">Bot 2:</label>
           <select id="bot2" value={botId2} onChange={handleBot2Change}>
             <option value="">Select Bot 2</option>
-            {Object.values(otherBots).map((bot) => (
-              <option key={bot.id} value={bot.id}>
-                {bot.name}
-              </option>
-            ))}
+            <optgroup label="Your Bots">
+              {Object.values(userBots).map((bot) => (
+                <option key={bot.id} value={bot.id}>
+                  {bot.name}
+                </option>
+              ))}
+            </optgroup>
+            <optgroup label="Other Bots">
+              {Object.values(otherBots).map((bot) => (
+                <option key={bot.id} value={bot.id}>
+                  {bot.name}
+                </option>
+              ))}
+            </optgroup>
           </select>
         </div>
         <div className="form-group">
@@ -164,7 +184,7 @@ const ChallengePage = () => {
           <input type="text" id="topic" value={topic} onChange={handleTopicChange} />
         </div>
         <button type="submit" className="submit-button">
-          Create Conversation
+          Generate Conversation
         </button>
       </form>
     </div>
